@@ -1,0 +1,11 @@
+{
+    "translations": {
+        "de": {
+            "BatteryLoad": "Speicherladung",
+            "BatteryLoadPerc": "Speicherladung %",
+            "DeliveredEnergy": "abgegebene Energie",
+            "GeneratorPower": "Leistung",
+            "TheoraticalMainPower": "fiktive HZ-Leistung"
+        }
+    }
+}

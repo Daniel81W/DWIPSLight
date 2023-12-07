@@ -1,0 +1,54 @@
+{
+    "elements": [
+        {
+            "type": "ExpansionPanel",
+            "caption": "Speicherdaten",
+            "items": [
+                {
+                    "type": "NumberSpinner",
+                    "name": "BatteryCapacity",
+                    "caption": "Speicherkapazität",
+                    "minimum": 0,
+                    "suffix": "kWh",
+                    "digits": 1
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "GeneratorMaxPower",
+                    "caption": "Nennleistung Wechselrichter",
+                    "minimum": 0,
+                    "suffix": "kW",
+                    "digits": 1
+                },
+                {
+                    "type": "NumberSpinner",
+                    "name": "BatteryUsefulCap",
+                    "caption": "Nutzbare Speicherkapazität",
+                    "minimum": 0,
+                    "suffix": "%",
+                    "digits": 1
+                }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Datenanbindung",
+            "items": [
+                {
+                    "type": "SelectVariable",
+                    "name": "MainPowerID",
+                    "caption": "HZ Leistung",
+                    "validVariableTypes": [1, 2]
+                },
+                {
+                    "type": "SelectVariable",
+                    "name": "AddPowerID",
+                    "caption": "Leistung zusätzliche Energiequelle",
+                    "validVariableTypes": [1, 2]
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "status": []
+}

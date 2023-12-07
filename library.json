@@ -1,0 +1,12 @@
+{
+    "id": "{61307D22-4D19-7E87-82BC-FED8DC05C723}",
+    "name": "DWIPSLight",
+    "author": "Daniel Weber",
+    "url": "https://github.com/Daniel81W/DWIPSLight.git",
+    "compatibility": {
+        "version": "7.0"
+    },
+    "version": "0.1.0",
+    "build": 0,
+    "date": 0
+}
