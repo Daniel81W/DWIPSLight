@@ -2,31 +2,25 @@
     "elements": [
         {
             "type": "ExpansionPanel",
-            "caption": "Speicherdaten",
+            "caption": "Ein- nd Ausgänge",
             "items": [
                 {
-                    "type": "NumberSpinner",
-                    "name": "BatteryCapacity",
-                    "caption": "Speicherkapazität",
-                    "minimum": 0,
-                    "suffix": "kWh",
-                    "digits": 1
+                    "type": "CheckBox",
+                    "name": "knxinput",
+                    "caption": "KNX-Eingang",
+                    "value": true
                 },
                 {
-                    "type": "NumberSpinner",
-                    "name": "GeneratorMaxPower",
-                    "caption": "Nennleistung Wechselrichter",
-                    "minimum": 0,
-                    "suffix": "kW",
-                    "digits": 1
+                    "type": "CheckBox",
+                    "name": "knxoutput",
+                    "caption": "zusätzlich KNX-Ausgang",
+                    "value": false
                 },
                 {
-                    "type": "NumberSpinner",
-                    "name": "BatteryUsefulCap",
-                    "caption": "Nutzbare Speicherkapazität",
-                    "minimum": 0,
-                    "suffix": "%",
-                    "digits": 1
+                    "type": "CheckBox",
+                    "name": "hue",
+                    "caption": "Hue",
+                    "value": false
                 }
             ]
         },
