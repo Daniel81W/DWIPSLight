@@ -2,7 +2,7 @@
     "elements": [
         {
             "type": "ExpansionPanel",
-            "caption": "Ein- nd Ausgänge",
+            "caption": "Ein- und Ausgänge",
             "items": [
                 {
                     "type": "CheckBox",
