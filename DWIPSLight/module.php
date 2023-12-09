@@ -28,15 +28,26 @@
             if($this->ReadPropertyBoolean("IsHue")){
                 $huelightid = $this->ReadPropertyInteger("HueLightID");
                 if($huelightid > 1){
+                    //an aus
+                    $onid = IPS_GetObjectIDByIdent ("on", $huelightid);
+                    if($onid > 1 && IPS_GetObjectIDByIdent("on", $this->InstanceID) == 0){
+                        $this->RegisterVariableInteger("on", "Status", "~Switch");
+                    }elseif($onid == 0){
+                        $this->UnregisterVariable("on");
+                    }
                     //Farbe
                     $colorid = IPS_GetObjectIDByIdent ("color", $huelightid);
-                    if($colorid > 0){
+                    if($colorid > 1){
                         $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
+                    }else{
+                        $this->UnregisterVariable("color");
                     }
                     //Farbtemp
                     @$colortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
-                    if($colortempid > 0){
-                        $this->RegisterVariableInteger("color_temp", "Farbtemoeratur", "PhilipsHUE.ColorTemperature");
+                    if($colortempid > 1){
+                        $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "PhilipsHUE.ColorTemperature");
+                    }else{
+                        $this->UnregisterVariable("color_temp");
                     }
                 }
             }
