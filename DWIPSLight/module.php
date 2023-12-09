@@ -31,7 +31,7 @@
                     //an aus
                     $onid = IPS_GetObjectIDByIdent ("on", $huelightid);
                     if($onid > 1 && IPS_GetObjectIDByIdent("on", $this->InstanceID) == 0){
-                        $this->RegisterVariableInteger("on", "Status", "~Switch");
+                        $this->RegisterVariableBoolean("on", "Status", "~Switch");
                     }elseif($onid == 0){
                         $this->UnregisterVariable("on");
                     }
