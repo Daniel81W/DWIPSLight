@@ -34,7 +34,7 @@
                         $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
                     }
                     //Farbtemp
-                    $colortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
+                    @$colortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
                     if($colortempid > 0){
                         $this->RegisterVariableInteger("color_temp", "Farbtemoeratur", "PhilipsHUE.ColorTemperature");
                     }
