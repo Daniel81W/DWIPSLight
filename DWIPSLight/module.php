@@ -7,6 +7,10 @@
 		{
 			//Never delete this line!
 			parent::Create();
+
+            $this->RegisterPropertyBoolean("isHue", false);
+            $this->ReadPropertyInteger("HueLightID");
+            $this->RegisterPropertyInteger("HueConnID");
 			
 		}
 
@@ -31,7 +35,7 @@
         */
 
 		public function ReceiveData($JSONString) {
-			
+
 		}
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {

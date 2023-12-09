@@ -48,12 +48,12 @@
             "items": [
                 {
                     "type": "SelectInstance",
-                    "name": "Hue",
+                    "name": "HueLightID",
                     "caption": "Hue Light",
                     "validModules": ["{87FA14D1-0ACA-4CBD-BE83-BA4DF8831876}","{6324AC4A-330C-4CB2-9281-12EECB450024}"]
                 },{
                     "type": "SelectInstance",
-                    "name": "HueConn",
+                    "name": "HueConnID",
                     "caption": "Hue Connectivity",
                     "validModules": ["{88465699-1C57-429B-924A-CAA56F45762F}"]
                 }
