@@ -29,16 +29,28 @@
             "caption": "KNX Input",
             "items": [
                 {
-                    "type": "SelectVariable",
-                    "name": "KNXInputID",
-                    "caption": "KNX",
-                    "validVariableTypes": [1, 2]
+                    "type": "SelectInstance",
+                    "name": "KNXiea",
+                    "caption": "KNX an/aus",
+                    "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
                 },
                 {
                     "type": "SelectInstance",
                     "name": "KNX",
                     "caption": "KNX e",
-                    "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
+                    "validModules": [" {6324AC4A-330C-4CB2-9281-12EECB450024}"]
+                }
+            ]
+        },
+        {
+            "type": "ExpansionPanel",
+            "caption": "Hue",
+            "items": [
+                {
+                    "type": "SelectInstance",
+                    "name": "Hue",
+                    "caption": "Hue",
+                    "validModules": [" {87FA14D1-0ACA-4CBD-BE83-BA4DF8831876}","{6324AC4A-330C-4CB2-9281-12EECB450024}"]
                 }
             ]
         }
