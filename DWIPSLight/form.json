@@ -8,7 +8,10 @@
                     "type": "CheckBox",
                     "name": "knxinput",
                     "caption": "KNX-Eingang",
-                    "value": true
+                    "value": true,
+                    "onClick": [
+                        "$this->UpdateFormField(\"KNXInputID\", \"visible\", true);"
+                    ]
                 },
                 {
                     "type": "CheckBox",
@@ -30,9 +33,10 @@
             "items": [
                 {
                     "type": "SelectVariable",
-                    "name": "MainPowerID",
-                    "caption": "HZ Leistung",
-                    "validVariableTypes": [1, 2]
+                    "name": "KNXInputID",
+                    "caption": "KNX",
+                    "validVariableTypes": [1, 2],
+                    "visible": false
                 },
                 {
                     "type": "SelectVariable",
