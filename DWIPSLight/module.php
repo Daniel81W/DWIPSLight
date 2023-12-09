@@ -8,9 +8,9 @@
 			//Never delete this line!
 			parent::Create();
 
-            $this->RegisterPropertyBoolean("isHue", false);
-            $this->RegisterPropertyInteger("HueLightID");
-            $this->RegisterPropertyInteger("HueConnID");
+            $this->RegisterPropertyBoolean("IsHue", false);
+            $this->RegisterPropertyInteger("HueLightID", 0);
+            $this->RegisterPropertyInteger("HueConnID", 0);
 			
 		}
 
