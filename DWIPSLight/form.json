@@ -50,7 +50,7 @@
                     "type": "SelectInstance",
                     "name": "Hue",
                     "caption": "Hue",
-                    "validModules": [" {87FA14D1-0ACA-4CBD-BE83-BA4DF8831876}","{6324AC4A-330C-4CB2-9281-12EECB450024}"]
+                    "validModules": ["{87FA14D1-0ACA-4CBD-BE83-BA4DF8831876}","{6324AC4A-330C-4CB2-9281-12EECB450024}"]
                 }
             ]
         }
