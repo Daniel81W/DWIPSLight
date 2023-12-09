@@ -9,7 +9,7 @@
 			parent::Create();
 
             $this->RegisterPropertyBoolean("isHue", false);
-            $this->ReadPropertyInteger("HueLightID");
+            $this->RegisterPropertyInteger("HueLightID");
             $this->RegisterPropertyInteger("HueConnID");
 			
 		}
