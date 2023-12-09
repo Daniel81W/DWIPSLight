@@ -8,10 +8,7 @@
                     "type": "CheckBox",
                     "name": "knxinput",
                     "caption": "KNX-Eingang",
-                    "value": true,
-                    "onClick": [
-                        "$this->UpdateFormField(\"KNXInputID\", \"visible\", true);"
-                    ]
+                    "value": true
                 },
                 {
                     "type": "CheckBox",
@@ -29,20 +26,19 @@
         },
         {
             "type": "ExpansionPanel",
-            "caption": "Datenanbindung",
+            "caption": "KNX Input",
             "items": [
                 {
                     "type": "SelectVariable",
                     "name": "KNXInputID",
                     "caption": "KNX",
-                    "validVariableTypes": [1, 2],
-                    "visible": false
+                    "validVariableTypes": [1, 2]
                 },
                 {
-                    "type": "SelectVariable",
-                    "name": "AddPowerID",
-                    "caption": "Leistung zusätzliche Energiequelle",
-                    "validVariableTypes": [1, 2]
+                    "type": "SelectInstance",
+                    "name": "KNX",
+                    "caption": "KNX e",
+                    "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
                 }
             ]
         }
