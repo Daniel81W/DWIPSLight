@@ -18,7 +18,7 @@
                 },
                 {
                     "type": "CheckBox",
-                    "name": "hue",
+                    "name": "IsHue",
                     "caption": "Hue",
                     "value": false
                 }

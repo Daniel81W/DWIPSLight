@@ -24,6 +24,16 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
+
+            if($this->ReadPropertyBoolean("IsHue")){
+                $huelightid = $this->ReadPropertyInteger("HueLightID");
+                if($huelightid > 1){
+                    $colorid = IPS_GetObjectIDByIdent ("color", $huelightid);
+                    if($colorid > 0){
+                        $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
+                    }
+                }
+            }
 		}
 
 		/**
