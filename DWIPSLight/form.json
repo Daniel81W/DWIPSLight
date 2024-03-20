@@ -30,9 +30,24 @@
             "items": [
                 {
                     "type": "SelectInstance",
-                    "name": "KNXiea",
+                    "name": "KNXieaID",
                     "caption": "KNX an/aus",
                     "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
+                },{
+                    "type": "SelectInstance",
+                    "name": "KNXdimvalueID",
+                    "caption": "KNX Dimmwert",
+                    "validModules": ["{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}"]
+                },{
+                    "type": "SelectInstance",
+                    "name": "KNXcolorID",
+                    "caption": "KNX Farbe",
+                    "validModules": ["{DE2E3FBF-1588-4293-B76C-C90446D9E5F1}"]
+                },{
+                    "type": "SelectInstance",
+                    "name": "KNXcolortempID",
+                    "caption": "KNX Farbtemperatur",
+                    "validModules": ["{DCAFED37-B20B-4EEB-AA44-799C9B804557}"]
                 }
             ]
         },

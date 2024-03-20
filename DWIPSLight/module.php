@@ -8,7 +8,16 @@
 			//Never delete this line!
 			parent::Create();
 
+            $this->RegisterPropertyBoolean("knxinput", false);
+            $this->RegisterPropertyBoolean("knxoutput", false);
             $this->RegisterPropertyBoolean("IsHue", false);
+
+
+            $this->RegisterPropertyInteger("KNXieaID", 0);
+            $this->RegisterPropertyInteger("KNXdimvalueID", 0);
+            $this->RegisterPropertyInteger("KNXcolorID", 0);
+            $this->RegisterPropertyInteger("KNXcolortempID", 0);
+
             $this->RegisterPropertyInteger("HueLightID", 0);
             $this->RegisterPropertyInteger("HueConnID", 0);
 			
