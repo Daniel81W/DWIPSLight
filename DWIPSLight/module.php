@@ -51,6 +51,8 @@
             $knxcolortempid = $this->ReadPropertyInteger("KNXcolortempID");
             if($knxeaid > 1 ||  $hueonid > 1){
                 $this->RegisterVariableBoolean("on", "Status", "~Switch");
+            }else{
+                $this->UnregisterVariable("on");
             }
             if($knxdimid > 1 ||  $huebrightnessid > 1){
                 $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100");
