@@ -46,7 +46,7 @@
                 $huecolortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
             }
             $knxeaid = $this->ReadPropertyInteger("KNXieaID");
-            if($knxeaid > 1 ||  IPS_GetObjectIDByIdent ("on", $huelightid) > 0){
+            if($knxeaid > 1 ||  $hueonid > 1){
                 $this->RegisterVariableBoolean("on", "Status", "~Switch");
             }
 
