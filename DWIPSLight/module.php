@@ -35,7 +35,18 @@
 			parent::ApplyChanges();
 
             $huelightid = $this->ReadPropertyInteger("HueLightID");
-            if($this->ReadPropertyInteger("KNXieaID") > 1 || IPS_GetObjectIDByIdent ("on", $huelightid) != false){
+            $hueonid = 0;
+            $huebrightnessid = 0;
+            $huecolorid = 0;
+            $huecolortempid = 0;
+            if($huelightid > 0){
+                $hueonid = IPS_GetObjectIDByIdent ("on", $huelightid);
+                $huebrightnessid = IPS_GetObjectIDByIdent ("brightness", $huelightid);
+                $huecolorid = IPS_GetObjectIDByIdent ("color", $huelightid);
+                $huecolortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
+            }
+            $knxeaid = $this->ReadPropertyInteger("KNXieaID");
+            if($knxeaid > 1 ||  IPS_GetObjectIDByIdent ("on", $huelightid) > 0){
                 $this->RegisterVariableBoolean("on", "Status", "~Switch");
             }
 
