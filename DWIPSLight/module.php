@@ -34,6 +34,12 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
+            $huelightid = $this->ReadPropertyInteger("HueLightID");
+            if($this->ReadPropertyInteger("KNXieaID") > 1 || IPS_GetObjectIDByIdent ("on", $huelightid) != false){
+                $this->RegisterVariableBoolean("on", "Status", "~Switch");
+            }
+
+            /*
             if($this->ReadPropertyBoolean("IsHue")){
                 $huelightid = $this->ReadPropertyInteger("HueLightID");
                 if($huelightid > 1){
@@ -66,7 +72,7 @@
                         $this->UnregisterVariable("color_temp");
                     }
                 }
-            }
+            }*/
 		}
 
 		/**
