@@ -44,6 +44,13 @@
                     }elseif($onid == 0){
                         $this->UnregisterVariable("on");
                     }
+                    //Helligkeit
+                    $brightnessid = IPS_GetObjectIDByIdent ("brightness", $huelightid);
+                    if($brightnessid > 1){
+                        $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100");
+                    }else{
+                        $this->UnregisterVariable("brightness");
+                    }
                     //Farbe
                     $colorid = IPS_GetObjectIDByIdent ("color", $huelightid);
                     if($colorid > 1){
