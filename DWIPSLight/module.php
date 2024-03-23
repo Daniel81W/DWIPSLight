@@ -46,8 +46,20 @@
                 $huecolortempid = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
             }
             $knxeaid = $this->ReadPropertyInteger("KNXieaID");
+            $knxdimid = $this->ReadPropertyInteger("KNXdimvalueID");
+            $knxcolorid = $this->ReadPropertyInteger("KNXcolorID");
+            $knxcolortempid = $this->ReadPropertyInteger("KNXcolortempID");
             if($knxeaid > 1 ||  $hueonid > 1){
                 $this->RegisterVariableBoolean("on", "Status", "~Switch");
+            }
+            if($knxdimid > 1 ||  $huebrightnessid > 1){
+                $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100");
+            }
+            if($knxcolorid > 1 ||  $huecolorid > 1){
+                $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
+            }
+            if($knxcolortempid > 1 ||  $huecolortempid > 1){
+                $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "PhilipsHUE.ColorTemperature");
             }
 
             /*
