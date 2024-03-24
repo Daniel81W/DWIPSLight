@@ -28,7 +28,12 @@
                     "width": "40px",
                     "add": "New!"
                 }
-            ]
+            ],
+            "values": [{
+                "InstanceID": 12435,
+                "Name": "ABCD",
+                "State": ""
+            }]
         }
     ],
     "actions": [],

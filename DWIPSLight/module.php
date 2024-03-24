@@ -172,5 +172,13 @@
 			
 		}
 
+        private function MiredToKelvin($mired):int{
+            return intval(round(1000000/$mired,0));
+        }
+
+        private function KelvinToMired($kelvin):int{
+            return intval(round(1000000/$kelvin,0));
+        }
+
     }
 ?>

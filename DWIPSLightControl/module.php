@@ -51,6 +51,22 @@
 		}
 
         public function RegisterLight($lightId){
+
+            $lightArrString = $this->ReadPropertyString("Lights");
+            $lightArr = json_decode($lightArrString);
+            $this->SendDebug("1", $lightArr,0);
+            /*    $newLights = [];
+                foreach ($infos as $info) {
+                    $newInfos[] = [
+                        'info1' => $info['info1'],
+                        'info2' => $info['info2'],
+                        'info' => $info['info1'] . $info['info2'],
+                        'active' => $info['active']
+                    ];
+                }
+                $this->UpdateFormField('infos', 'values', json_encode($newInfos));
+*/
+
             if(@IPS_GetObjectIDByIdent("on", $lightId)>0){
                 $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), 10603);
             }
