@@ -1,0 +1,36 @@
+{
+    "elements": [
+        {
+            "type": "List",
+            "name": "Lights",
+            "caption": "Lights",
+            "rowCount": 5,
+            "add": false,
+            "delete": false,
+            "sort": {
+                "column": "Name",
+                "direction": "ascending"
+            },
+            "columns": [
+                {
+                    "caption": "InstanceID",
+                    "name": "InstanceID",
+                    "width": "75px",
+                    "add": 0
+                }, {
+                    "caption": "Name",
+                    "name": "Name",
+                    "width": "auto",
+                    "add": ""
+                }, {
+                    "caption": "State",
+                    "name": "State",
+                    "width": "40px",
+                    "add": "New!"
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "status": []
+}

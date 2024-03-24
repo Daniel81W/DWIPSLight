@@ -1,0 +1,12 @@
+{
+    "translations": {
+        "de": {
+            "num_lights_on":"Anzahl eingeschalteter Lichter",
+            "Lights": "Lichter"
+        },
+        "en": {
+            "num_lights_on":"number of lights switched on",
+            "Lights": "lights"
+        }
+    }
+}

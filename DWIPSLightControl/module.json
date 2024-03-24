@@ -1,0 +1,12 @@
+{
+    "id": "{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}",
+    "name": "DWIPSLightControl",
+    "type": 0,
+    "vendor": "DWIPS",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSLIGHTCONTROL",
+    "url": "https://github.com/Daniel81W/DWIPSLight"
+}
