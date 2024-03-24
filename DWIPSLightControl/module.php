@@ -54,7 +54,6 @@
 
             $lightArrString = $this->ReadPropertyString("Lights");
             $lightArr = json_decode($lightArrString);
-            $this->SendDebug("1", $lightArr[0],0);
 
             $newLights = [];
             /*foreach ($lightArr as $light) {
