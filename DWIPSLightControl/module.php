@@ -39,11 +39,14 @@
 		}
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-
+            $lights = IPS_GetInstanceListByModuleID("{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}");
+            foreach ($lights as $light){
+                $this->SendDebug("D", $light, 0);
+            }
 		}
 
         public function RegisterLight($lightId){
-
+            $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), 10603);
         }
 
     }
