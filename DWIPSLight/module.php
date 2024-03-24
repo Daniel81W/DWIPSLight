@@ -147,7 +147,7 @@
             $this->SendDebug("KNX", $SenderID . " - " . IPS_GetObjectIDByIdent("Value",$this->KNXOnID),0);
             $this->SendDebug("KNX", $Message . " - " . $Data,0);
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID) && $Message == 10603){
-                $this->SendDebug("KNX", $Data[0],0);
+                $this->SendDebug("KNX", $Data[0] . " - " . $Data[1],0);
             }
 
 			
