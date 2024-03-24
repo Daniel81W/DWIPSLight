@@ -43,12 +43,11 @@
             $lights = IPS_GetInstanceListByModuleID("{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}");
             $lightson = 0;
             foreach ($lights as $light){
-                $this->SendDebug("D", $light . " - " . IPS_GetObjectIDByIdent("on", $light) . " - " . GetValue(IPS_GetVariable(IPS_GetObjectIDByIdent("on", $light))), 0);
                 if(GetValue(IPS_GetObjectIDByIdent("on", $light))){
                    $lightson += 1;
                 }
             }
-            $this->SendDebug("D", $lightson, 0);
+            $this->SetValue("oncount", $lightson);
 		}
 
         public function RegisterLight($lightId){
