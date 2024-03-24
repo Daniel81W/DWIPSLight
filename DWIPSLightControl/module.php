@@ -55,17 +55,20 @@
             $lightArrString = $this->ReadPropertyString("Lights");
             $lightArr = json_decode($lightArrString);
             $this->SendDebug("1", $lightArr[0],0);
-            /*    $newLights = [];
-                foreach ($infos as $info) {
-                    $newInfos[] = [
+
+            $newLights = [];
+            /*foreach ($lightArr as $light) {
+                array_push($newLights, ["InstanceID" => ])
+                $newLights[] = [
                         'info1' => $info['info1'],
                         'info2' => $info['info2'],
                         'info' => $info['info1'] . $info['info2'],
                         'active' => $info['active']
                     ];
-                }
-                $this->UpdateFormField('infos', 'values', json_encode($newInfos));
-*/
+                }*/
+            array_push($newLights,["InstanceID" => $lightId]);
+            $this->UpdateFormField('Lights', 'values', json_encode($newLights));
+
 
             if(@IPS_GetObjectIDByIdent("on", $lightId)>0){
                 $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), 10603);
