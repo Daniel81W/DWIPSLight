@@ -10,7 +10,7 @@
 			parent::Create();
 
             $this->RegisterPropertyString("Lights", "");
-            $this->RegisterVariableInteger("oncount", $this->Translate("Number of lights switched on"),"",1);
+            $this->RegisterVariableInteger("oncount", $this->Translate("num_lights_on"),"",1);
 
 		}
 
