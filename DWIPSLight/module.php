@@ -43,9 +43,6 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("HueConnID", 0);
 
-            if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
-                DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
-            }
 		}
 
 		public function Destroy()
@@ -129,6 +126,11 @@
                 if($this->UnregisterVariable("color_temp")){
                     $this->ColorTemperatureID = 0;
                 }
+            }
+
+
+            if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
+                DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
             }
 		}
 
