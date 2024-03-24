@@ -143,11 +143,13 @@
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
             $this->KNXOnID = $this->ReadPropertyInteger("KNXieaID");
+            $this->HueOnID = IPS_GetObjectIDByIdent ("on", $this->ReadPropertyInteger("HueLightID"));
 
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID) && $Message == 10603){
                 $this->SendDebug("KNX", $Data[0],0);
                 $this->SendDebug("KNX", $Data[1],0);
                 $this->SendDebug("KNX", $Data[2],0);
+                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"),$Data[0]);
             }
 
 			
