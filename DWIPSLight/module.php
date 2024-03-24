@@ -142,7 +142,7 @@
 		}
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-	        if($SenderID == $this->KNXOnID){
+	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID)){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SendDebug("KNX", $Message . " - " . $Data,0);
             }
