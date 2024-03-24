@@ -151,7 +151,7 @@
 
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID) && $Message == 10603){
                 $this->SetValue("on", $Data[0]);
-                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $Data[0]);
+                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $this->GetValue("on"));
                 //($this->ReadPropertyInteger("HueLightID"),"on", $Data[0]);
             }
             if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXBrightnessID) && $Message == 10603){
