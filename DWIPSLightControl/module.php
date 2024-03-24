@@ -66,6 +66,7 @@
                     ];
                 }*/
             array_push($newLights,["InstanceID" => $lightId]);
+            IPS_SetProperty($this->InstanceID, "Lights", json_encode($newLights));
             $this->UpdateFormField('Lights', 'values', json_encode($newLights));
 
 
