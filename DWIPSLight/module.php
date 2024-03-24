@@ -151,6 +151,7 @@
 
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID) && $Message == 10603){
                 $this->SetValue("on", $Data[0]);
+                IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Data[0]);
             }
             if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXBrightnessID) && $Message == 10603){
                 $this->SetValue("brightness", $Data[0]);
@@ -160,7 +161,6 @@
             }
             if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXColorTemperatureID) && $Message == 10603){
                 $this->SetValue("color_temp", $Data[0]);
-                IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Data[0]);
             }
 
 			
