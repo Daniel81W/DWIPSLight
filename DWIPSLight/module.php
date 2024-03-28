@@ -191,7 +191,6 @@
             //Wenn sendende ID Variable mit Ident "Value" der KNX Dim DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "brightness" entsprechend setzen und wenn vorhanden HueBrightness auch entsprechend setzen
             if($SenderID == IPS_GetObjectIDByIdent("Value",$knxBrightnessID) && $Message == 10603){
-                $this->SendDebug("1", $Data[0], 0);
                 $this->SetBrightness($Data[0]);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Farb DPT und Message = 10603 (Variable aktualisiert) dann
@@ -212,23 +211,16 @@
 
             switch($Ident) {
                 case "on":
-                    /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetState($Value);
                     break;
                 case "brightness":
-                    /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetBrightness($Value);
                     break;
                 case "color":
-                    /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->SetValue($Ident, $Value);
-                    //KNX_WriteDPT232()
-                    /** @noinspection PhpUndefinedFunctionInspection */
-                    PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value, []);
+                    $this->SetColor($Value);
                     break;
                 case "Color_temp":
-                    /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->SetValue($Ident, $Value);
+                    $this->SetColorTemperature($Value);
                     break;
                 default:
                     throw new Exception("Invalid Ident");
