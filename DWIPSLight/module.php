@@ -286,7 +286,7 @@
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
                 }
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
                 }
                 if ($this->ReadPropertyInteger("KNXoutdimvalueID") > 1) {
                     KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
@@ -296,7 +296,7 @@
                 }
             }else{
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), false);
                 }
                 if ($this->ReadPropertyInteger("KNXoutdimvalueID") > 1) {
                     KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
