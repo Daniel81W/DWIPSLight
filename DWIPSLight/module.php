@@ -284,7 +284,7 @@
                 $this->SetValue("on", true);
                 if (!$actorState) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
-                    IPS_Sleep(500);
+                    IPS_Sleep(1500);
                 }
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
@@ -307,7 +307,7 @@
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
                 if ($actorState) {
-                    IPS_Sleep(500);
+                    IPS_Sleep(1500);
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), false);
                 }
             }
