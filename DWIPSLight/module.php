@@ -31,6 +31,13 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("HueConnID", 0);
 
+
+            $colortempprofilename = "DWIPS.Light.".$this->Translate("colortemp");
+            if (!IPS_VariableProfileExists($colortempprofilename)){
+                IPS_CreateVariableProfile($colortempprofilename, 1);
+                IPS_SetVariableProfileValues($colortempprofilename,2000, 6536, 1);
+                IPS_SetVariableProfileText($colortempprofilename, "", " K");
+            }
 		}
 
 
@@ -112,7 +119,7 @@
 
             if($hasKNXColorTemp || $hasHueColorTemp){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "PhilipsHUE.ColorTemperature");
+                $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "DWIPS.Light.".$this->Translate("colortemp"));
                 if($hasKNXColorTemp){
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolortempID")), 10603);

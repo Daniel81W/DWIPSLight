@@ -1,10 +1,12 @@
 {
     "translations": {
         "de": {
+            "colortemp": "Farbtemperatur",
             "num_lights_on":"Anzahl eingeschalteter Lichter",
             "Lights": "Lichter"
         },
         "en": {
+            "colortemp": "color_temperature",
             "num_lights_on":"number of lights switched on",
             "Lights": "lights"
         }
