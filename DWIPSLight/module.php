@@ -271,7 +271,6 @@
 
         public function SetBrightness($Value){
             $this->SetValue("brightness", $Value);
-            $this->SetValue("on", true);
 
 
             $actorState = false;
@@ -282,8 +281,10 @@
             }
 
             if($Value>0) {
+                $this->SetValue("on", true);
                 if (!$actorState) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
+                    IPS_Sleep(500);
                 }
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
@@ -295,6 +296,7 @@
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
             }else{
+                $this->SetValue("on", false);
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), false);
                 }
@@ -304,7 +306,8 @@
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
-                if (!$actorState) {
+                if ($actorState) {
+                    IPS_Sleep(500);
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), false);
                 }
             }
