@@ -55,7 +55,7 @@
             $hasHueDim = false;
             $hasHueColor = false;
             $hasHueColorTemp = false;
-            if($huelightid > 0) {
+            if($huelightid > 1) {
                 $hasHueEA = (IPS_GetObjectIDByIdent("on", $huelightid) > 1);
                 $hasHueDim = (IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
                 $hasHueColor = (IPS_GetObjectIDByIdent("color", $huelightid) > 1);
