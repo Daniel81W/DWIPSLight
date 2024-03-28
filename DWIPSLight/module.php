@@ -119,7 +119,7 @@
                 }
                 if($hasHueColorTemp){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("color_temp", $huelightid), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("color_temperature", $huelightid), 10603);
                 }
             }else{
                 /** @noinspection PhpExpressionResultUnusedInspection */
