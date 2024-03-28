@@ -214,11 +214,14 @@
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                    RequestAction(IPS_GetObjectIDByIdent("on",$this->ReadPropertyInteger("HueLightID")), $Value);
                     IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Value);
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
+                    KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimID"), $Value);
+                    PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value);
                     break;
                 case "color":
                     /** @noinspection PhpExpressionResultUnusedInspection */
