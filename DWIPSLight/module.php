@@ -219,7 +219,7 @@
                 case "color":
                     $this->SetColor($Value);
                     break;
-                case "Color_temp":
+                case "color_temp":
                     $this->SetColorTemperature($Value);
                     break;
                 default:
@@ -305,7 +305,6 @@
         }
 
         public function SetColor($Color){
-            $this->SendDebug("T", $Color,0);
             $this->SetValue("color", $Color);
 
 
@@ -355,6 +354,36 @@
         }
 
         public function SetColorTemperature($ColorTemperature){
+            $this->SetValue("color", $ColorTemperature);
+
+
+            $actorState = false;
+            if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
+                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
+            }elseif($this->ReadPropertyInteger("KNXoutActoreaID") > 1){
+                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")));
+            }
+
+
+                $this->SetValue("on", true);
+                if (!$actorState) {
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
+                    IPS_Sleep(1500);
+                }
+                if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
+                }
+                if ($this->ReadPropertyInteger("KNXoutcolortempID") > 1) {
+                    KNX_WriteDPT7($this->ReadPropertyInteger("KNXoutcolortempID"), $ColorTemperature);
+                }
+                if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")) > 1) {
+                    RequestAction(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
+                    IPS_Sleep(1500);
+                    if(GetValue(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID"))) != KelvinToMired($ColorTemperature)) {
+                        RequestAction(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
+                    }
+                }
+
 
         }
 
