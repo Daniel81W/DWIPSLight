@@ -325,7 +325,7 @@
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
                 }
                 if ($this->ReadPropertyInteger("KNXoutcolorID") > 1) {
-                    $this->SendDebug("1", dechex($Color),0);
+                    $this->SendDebug("1", $this->dec2rgb($Color)["r"] . " - " . dechex($Color),0);
                     KNX_WriteDPT232($this->ReadPropertyInteger("KNXoutcolorID"), 0,0,0);//$Color);
                 }
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color", $this->ReadPropertyInteger("HueLightID")) > 1) {
@@ -376,5 +376,11 @@
             return intval(round(1000000/$kelvin,0));
         }
 
+        private function dec2rgb($DecColor){
+            $r = $DecColor / 256/256;
+            $g = ($DecColor - $r *256*256)/256;
+            $b = $DecColor - $r*256*256 - $g *256;
+            return ["r" => $r, "g" => $g, "b" => $b];
+        }
     }
 ?>
