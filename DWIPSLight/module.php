@@ -305,6 +305,7 @@
         }
 
         public function SetColor($Color){
+            $this->SendDebug("T", $Color,0);
             $this->SetValue("color", $Color);
 
 
