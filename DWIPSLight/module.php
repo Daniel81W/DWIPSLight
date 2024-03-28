@@ -294,7 +294,12 @@
                 }
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
+                    IPS_Sleep(1500);
+                    if(GetValue(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID"))) != $Value) {
+                        RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
+                    }
                 }
+
             }else{
                 $this->SetValue("on", false);
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
