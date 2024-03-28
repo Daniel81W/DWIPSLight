@@ -213,7 +213,7 @@
 
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
-                    KNX_WriteDPT1($this->ReadPropertyInteger("knxouteaID"), $Value);
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
