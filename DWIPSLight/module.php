@@ -229,6 +229,7 @@
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
                     //KNX_WriteDPT232()
+                    /** @noinspection PhpUndefinedFunctionInspection */
                     PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value, []);
                     break;
                 case "Color_temp":
@@ -294,9 +295,6 @@
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
             }else{
-                if (!$actorState) {
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
-                }
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
                 }
@@ -305,6 +303,9 @@
                 }
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
                     RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
+                }
+                if (!$actorState) {
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), false);
                 }
             }
         }
