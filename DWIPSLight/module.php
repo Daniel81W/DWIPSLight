@@ -377,9 +377,9 @@
         }
 
         private function dec2rgb($DecColor){
-            $r = round($DecColor / 256/256);
-            $g = round(($DecColor - $r *256*256)/256);
-            $b = round($DecColor - $r*256*256 - $g *256);
+            $r = intdiv($DecColor, 256*256);
+            $g = intdiv(($DecColor - $r *256*256),256);
+            $b = $DecColor - $r*256*256 - $g *256;
             return ["r" => $r, "g" => $g, "b" => $b];
         }
     }
