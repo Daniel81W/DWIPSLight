@@ -220,18 +220,22 @@
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                    $this->SendDebug('1', IPS_GetObjectIDByIdent("on",$this->ReadPropertyInteger("HueLightID")) . " - " . $Value, 0);
                     RequestAction(IPS_GetObjectIDByIdent("on",$this->ReadPropertyInteger("HueLightID")), $Value);
                     IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Value);
+                    //$opt1 = ['on' => ['on' => $Value], 'dimming' => ['brightness' => $brightness], 'dynamics' => ['duration' => $duration]];
+                    //PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $color, $opt1);
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
                     KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
-                    PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value);
                     break;
                 case "color":
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
+                    //KNX_WriteDPT232()
+                    PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value, []);
                     break;
                 case "Color_temp":
                     /** @noinspection PhpExpressionResultUnusedInspection */
