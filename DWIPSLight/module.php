@@ -26,6 +26,14 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXcolortempID", 0);
 
+            $this->RegisterPropertyInteger("KNXouteaID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXoutdimvalueID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXoutcolorID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXoutcolortempID", 0);
+
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("HueLightID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
@@ -106,7 +114,7 @@
                 $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
                 if($hasKNXColor){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolorID")), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value0", $this->ReadPropertyInteger("KNXcolorID")), 10603);
                 }
                 if($hasHueColor){
                     /** @noinspection PhpExpressionResultUnusedInspection */
@@ -177,7 +185,7 @@
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Farb DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "color" entsprechend setzen und wenn vorhanden Hue-Color auch entsprechend setzen
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorID) && $Message == 10603){
+            if($SenderID == IPS_GetObjectIDByIdent("Value0",$knxColorID) && $Message == 10603){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SetValue("color", $Data[0]);
             }
