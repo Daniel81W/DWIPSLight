@@ -99,6 +99,8 @@
             if($hasKNXDim || $hasHueDim){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("brightness");
                 if($hasKNXDim){
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXdimvalueID")), 10603);
@@ -115,6 +117,8 @@
             if($hasKNXColor || $hasHueColor){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableInteger("color", "Farbe", "~HexColor", 3);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("color");
                 if($hasKNXColor){
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->RegisterMessage(IPS_GetObjectIDByIdent("Value0", $this->ReadPropertyInteger("KNXcolorID")), 10603);
@@ -131,6 +135,8 @@
             if($hasKNXColorTemp || $hasHueColorTemp){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "DWIPS.Light.".$this->Translate("colortemp"), 4);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("color_temp");
                 if($hasKNXColorTemp){
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolortempID")), 10603);
