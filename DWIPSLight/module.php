@@ -1,4 +1,5 @@
-<?php /** @noinspection PhpRedundantMethodOverrideInspection */
+<?php /** @noinspection PhpExpressionResultUnusedInspection */
+/** @noinspection PhpRedundantMethodOverrideInspection */
 /** @noinspection PhpRedundantClosingTagInspection */
 
 //include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
@@ -80,6 +81,8 @@
             if($hasKNXEA || $hasHueEA){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableBoolean("on", "Status", "~Switch");
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("on");
                 if($hasKNXEA){
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
