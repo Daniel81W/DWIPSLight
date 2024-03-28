@@ -377,10 +377,10 @@
                     KNX_WriteDPT7($this->ReadPropertyInteger("KNXoutcolortempID"), $ColorTemperature);
                 }
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")) > 1) {
-                    RequestAction(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
+                    RequestAction(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
                     IPS_Sleep(1500);
-                    if(GetValue(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID"))) != KelvinToMired($ColorTemperature)) {
-                        RequestAction(IPS_GetObjectIDByIdent("color_temperatur", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
+                    if(GetValue(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID"))) != KelvinToMired($ColorTemperature)) {
+                        RequestAction(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")), KelvinToMired($ColorTemperature));
                     }
                 }
 
