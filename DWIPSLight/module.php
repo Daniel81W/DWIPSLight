@@ -223,8 +223,7 @@
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->SetValue($Ident, $Value);
-                    KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
+                    $this->SetBrightness($Value);
                     break;
                 case "color":
                     /** @noinspection PhpExpressionResultUnusedInspection */
@@ -262,9 +261,34 @@
                 if($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) >1){
                     RequestAction(IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
-                IPS_Sleep(800);
+                IPS_Sleep(1000);
                 if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), $Value);
+                }
+            }
+        }
+
+        public function SetBrightness($Value){
+            $this->SetValue("brightness", $Value);
+            $this->SetValue("on", true);
+
+            if($Value>0) {
+                if ($this->ReadPropertyInteger("KNXinActoreaID") > 1) {
+                    if (!GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")))) {
+                        KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutActoreaID"), true);
+                    }
+                }
+                elseif(!GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")))){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
+                }
+                if ($this->ReadPropertyInteger("KNXoutdimvalueID") > 1) {
+                    KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
+                }
+                if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                }
+                if ($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) > 1 && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
+                    RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Value);
                 }
             }
         }
