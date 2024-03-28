@@ -19,6 +19,9 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
 
 
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXinActoreaID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXieaID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXdimvalueID", 0);
@@ -27,6 +30,9 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXcolortempID", 0);
 
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXoutActoreaID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXouteaID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutdimvalueID", 0);
@@ -212,19 +218,8 @@
 
             switch($Ident) {
                 case "on":
-                    //Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
-                    //Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
-
-                    //Neuen Wert in die Statusvariable schreiben
-
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->SetValue($Ident, $Value);
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
-                    $this->SendDebug('1', IPS_GetObjectIDByIdent("on",$this->ReadPropertyInteger("HueLightID")) . " - " . $Value, 0);
-                    RequestAction(IPS_GetObjectIDByIdent("on",$this->ReadPropertyInteger("HueLightID")), $Value);
-                    IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Value);
-                    //$opt1 = ['on' => ['on' => $Value], 'dimming' => ['brightness' => $brightness], 'dynamics' => ['duration' => $duration]];
-                    //PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $color, $opt1);
+                    $this->SetState($Value);
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
@@ -245,6 +240,36 @@
                     throw new Exception("Invalid Ident");
             }
 
+        }
+
+        public function SetState($Value){
+            $this->SetValue("on", $Value);
+            if($Value) {
+                if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), $Value);
+                }
+                IPS_Sleep(800);
+                if($this->ReadPropertyInteger("KNXouteaID") > 1){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                }
+                if($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) >1){
+                    RequestAction(IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")), $Value);
+                }
+            }else{
+                if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), $Value);
+                }
+                if($this->ReadPropertyInteger("KNXouteaID") > 1){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
+                }
+                if($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) >1){
+                    RequestAction(IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")), $Value);
+                }
+                IPS_Sleep(800);
+                if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), $Value);
+                }
+            }
         }
 
         /**
