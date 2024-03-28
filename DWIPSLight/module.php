@@ -186,10 +186,11 @@
             //Wenn sendende ID Variable mit Ident "Value" der KNX an/aus DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "on" entsprechend setzen und wenn vorhanden Hue-Status auch entsprechend setzen
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$knxOnID) && $Message == 10603){
+                $this->SetState($Data[0]);
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->SetValue("on", $Data[0]);
+                //$this->SetValue("on", $Data[0]);
                 /** @noinspection PhpUndefinedFunctionInspection */
-                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $Data[0]);
+                //PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $Data[0]);
                 //($this->ReadPropertyInteger("HueLightID"),"on", $Data[0]);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Dim DPT und Message = 10603 (Variable aktualisiert) dann
