@@ -1,20 +1,8 @@
-<?php /** @noinspection PhpRedundantClosingTagInspection */
+<?php /** @noinspection PhpRedundantMethodOverrideInspection */
+/** @noinspection PhpRedundantClosingTagInspection */
 
 //include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
 	class DWIPSLight extends IPSModule {
-
-        private $OnID = 0;
-        private $BrightnessID = 0;
-        private $ColorID = 0;
-        private $ColorTemperatureID = 0;
-        private $KNXOnID = 0;
-        private $KNXBrightnessID = 0;
-        private $KNXColorID = 0;
-        private $KNXColorTemperatureID = 0;
-        private $HueOnID = 0;
-        private $HueBrightnessID = 0;
-        private $HueColorID = 0;
-        private $HueColorTemperatureID = 0;
 
 		public function Create()
 		{
@@ -45,7 +33,8 @@
 
 		}
 
-		public function Destroy()
+
+        public function Destroy()
 		{
 			//Never delete this line!
 			parent::Destroy();
@@ -57,79 +46,89 @@
 			parent::ApplyChanges();
 
             $huelightid = $this->ReadPropertyInteger("HueLightID");
-            if($huelightid > 0){
-                $this->HueOnID = IPS_GetObjectIDByIdent ("on", $huelightid);
-                $this->HueBrightnessID = IPS_GetObjectIDByIdent ("brightness", $huelightid);
-                $this->HueColorID = IPS_GetObjectIDByIdent ("color", $huelightid);
-                $this->HueColorTemperatureID = IPS_GetObjectIDByIdent ("color_temperature", $huelightid);
+
+            $hasKNXEA = ($this->ReadPropertyInteger("KNXieaID") > 1);
+            $hasKNXDim = ($this->ReadPropertyInteger("KNXdimvalueID") > 1);
+            $hasKNXColor = ($this->ReadPropertyInteger("KNXcolorID") > 1);
+            $hasKNXColorTemp = ($this->ReadPropertyInteger("KNXcolortempID") > 1);
+            $hasHueEA = false;
+            $hasHueDim = false;
+            $hasHueColor = false;
+            $hasHueColorTemp = false;
+            if($huelightid > 0) {
+                $hasHueEA = (IPS_GetObjectIDByIdent("on", $huelightid) > 1);
+                $hasHueDim = (IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
+                $hasHueColor = (IPS_GetObjectIDByIdent("color", $huelightid) > 1);
+                $hasHueColorTemp = (IPS_GetObjectIDByIdent("color_temperature", $huelightid) > 1);
             }
-            $this->KNXOnID = $this->ReadPropertyInteger("KNXieaID");
-            if($this->KNXOnID > 1){
+
+            if($hasKNXEA || $hasHueEA){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXOnID), 10603);
-            }
-            else{
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                //$this->UnregisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXOnID), 10603);
-            }
-            $this->KNXBrightnessID = $this->ReadPropertyInteger("KNXdimvalueID");
-            if($this->KNXBrightnessID > 1){
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXBrightnessID), 10603);
-            }
-            else{
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                //$this->UnregisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXBrightnessID), 10603);
-            }
-            $this->KNXColorID = $this->ReadPropertyInteger("KNXcolorID");
-            if($this->KNXColorID > 1){
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXColorID), 10603);
-            }
-            else{
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                //$this->UnregisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXColorID), 10603);
-            }
-            $this->KNXColorTemperatureID = $this->ReadPropertyInteger("KNXcolortempID");
-            if($this->KNXColorTemperatureID > 1){
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXColorTemperatureID), 10603);
-            }
-            else{
-                /** @noinspection PhpExpressionResultUnusedInspection */
-                //$this->UnregisterMessage(IPS_GetObjectIDByIdent("Value", $this->KNXColorTemperatureID), 10603);
-            }
-            if($this->KNXOnID > 1 ||  $this->HueOnID > 1){
-                $this->OnID = $this->RegisterVariableBoolean("on", "Status", "~Switch");
-            }else{
-                if($this->UnregisterVariable("on")){
-                    $this->OnID = 0;
+                $this->RegisterVariableBoolean("on", "Status", "~Switch");
+                if($hasKNXEA){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
                 }
-            }
-            if($this->KNXBrightnessID > 1 ||  $this->HueBrightnessID > 1){
-                $this->BrightnessID = $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100");
-            }else{
-                if($this->UnregisterVariable("brightness")){
-                    $this->BrightnessID = 0;
+                if($hasHueEA){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $huelightid), 10603);
                 }
-            }
-            if($this->KNXColorID > 1 ||  $this->HueColorID > 1){
-                $this->ColorID = $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
             }else{
-                if($this->UnregisterVariable("color")){
-                    $this->ColorID = 0;
-                }
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->UnregisterVariable("on");
             }
-            if($this->KNXColorTemperatureID > 1 ||  $this->HueColorTemperatureID > 1){
-                $this->ColorTemperatureID = $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "PhilipsHUE.ColorTemperature");
-            }else{
-                if($this->UnregisterVariable("color_temp")){
-                    $this->ColorTemperatureID = 0;
+
+            if($hasKNXDim || $hasHueDim){
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100");
+                if($hasKNXDim){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXdimvalueID")), 10603);
                 }
+                if($hasHueDim){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("brightness", $huelightid), 10603);
+                }
+            }else{
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->UnregisterVariable("brightness");
+            }
+
+            if($hasKNXColor || $hasHueColor){
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterVariableInteger("color", "Farbe", "~HexColor");
+                if($hasKNXColor){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolorID")), 10603);
+                }
+                if($hasHueColor){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("color", $huelightid), 10603);
+                }
+            }else{
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->UnregisterVariable("color");
+            }
+
+            if($hasKNXColorTemp || $hasHueColorTemp){
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "PhilipsHUE.ColorTemperature");
+                if($hasKNXColorTemp){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolortempID")), 10603);
+                }
+                if($hasHueColorTemp){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("color_temp", $huelightid), 10603);
+                }
+            }else{
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->UnregisterVariable("color_temp");
             }
 
 
             if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
+                /** @noinspection PhpUndefinedFunctionInspection */
                 DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
             }
 		}
@@ -147,36 +146,89 @@
 		}
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-            $this->KNXOnID = $this->ReadPropertyInteger("KNXieaID");
-            $this->KNXBrightnessID = $this->ReadPropertyInteger("KNXdimvalueID");
-            $this->KNXColorID = $this->ReadPropertyInteger("KNXcolorID");
-            $this->KNXColorTemperatureID = $this->ReadPropertyInteger("KNXcolortempID");
+            //IDs aus Properties auslesen
+            $knxOnID = $this->ReadPropertyInteger("KNXieaID");
+            $knxBrightnessID = $this->ReadPropertyInteger("KNXdimvalueID");
+            $knxColorID = $this->ReadPropertyInteger("KNXcolorID");
+            $knxColorTemperatureID = $this->ReadPropertyInteger("KNXcolortempID");
+            $hueOnID = IPS_GetObjectIDByIdent ("on", $this->ReadPropertyInteger("HueLightID"));
 
-            $this->HueOnID = IPS_GetObjectIDByIdent ("on", $this->ReadPropertyInteger("HueLightID"));
-
-	        if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXOnID) && $Message == 10603){
+            //Wenn sendende ID Variable mit Ident "Value" der KNX an/aus DPT und Message = 10603 (Variable aktualisiert) dann
+            //    eigene Variable mit Ident "on" entsprechend setzen und wenn vorhanden Hue-Status auch entsprechend setzen
+	        if($SenderID == IPS_GetObjectIDByIdent("Value",$knxOnID) && $Message == 10603){
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SetValue("on", $Data[0]);
-                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $this->GetValue("on"));
+                /** @noinspection PhpUndefinedFunctionInspection */
+                PHUE_SwitchMode($this->ReadPropertyInteger("HueLightID"), $Data[0]);
                 //($this->ReadPropertyInteger("HueLightID"),"on", $Data[0]);
             }
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXBrightnessID) && $Message == 10603){
+            //Wenn sendende ID Variable mit Ident "Value" der KNX Dim DPT und Message = 10603 (Variable aktualisiert) dann
+            //    eigene Variable mit Ident "brightness" entsprechend setzen und wenn vorhanden HueBrightness auch entsprechend setzen
+            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxBrightnessID) && $Message == 10603){
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SetValue("brightness", $Data[0]);
             }
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXColorID) && $Message == 10603){
+            //Wenn sendende ID Variable mit Ident "Value" der KNX Farb DPT und Message = 10603 (Variable aktualisiert) dann
+            //    eigene Variable mit Ident "color" entsprechend setzen und wenn vorhanden Hue-Color auch entsprechend setzen
+            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorID) && $Message == 10603){
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SetValue("color", $Data[0]);
             }
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$this->KNXColorTemperatureID) && $Message == 10603){
+            //Wenn sendende ID Variable mit Ident "Value" der KNX Farbtemp DPT und Message = 10603 (Variable aktualisiert) dann
+            //    eigene Variable mit Ident "color_temp" entsprechend setzen und wenn vorhanden Hue-colortemp auch entsprechend setzen
+            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorTemperatureID) && $Message == 10603){
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->SetValue("color_temp", $Data[0]);
             }
 
 			
 		}
 
-        private function MiredToKelvin($mired):int{
+        public function RequestAction($Ident, $Value) {
+
+            switch($Ident) {
+                case "on":
+                    //Hier würde normalerweise eine Aktion z.B. das Schalten ausgeführt werden
+                    //Ausgaben über 'echo' werden an die Visualisierung zurückgeleitet
+
+                    //Neuen Wert in die Statusvariable schreiben
+
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->SetValue($Ident, $Value);
+                    break;
+                case "brightness":
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->SetValue($Ident, $Value);
+                    break;
+                case "color":
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->SetValue($Ident, $Value);
+                    break;
+                case "Color_temp":
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->SetValue($Ident, $Value);
+                    break;
+                default:
+                    throw new Exception("Invalid Ident");
+            }
+
+        }
+
+        /**
+         * Converts color temperature in mired to color temperature in Kelvin
+         * @param int $mired color temperature in mired
+         * @return int color temperature in Kelvin
+         */
+        private function MiredToKelvin(int $mired):int{
             return intval(round(1000000/$mired,0));
         }
 
-        private function KelvinToMired($kelvin):int{
+        /**
+         * Converts color temperature in Kelvin to color temperature in mired
+         * @param int $kelvin color temperature in Kelvin
+         * @return int color temperature in mired
+         */
+        private function KelvinToMired(int $kelvin):int{
             return intval(round(1000000/$kelvin,0));
         }
 
