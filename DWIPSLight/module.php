@@ -226,7 +226,7 @@
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
-                    KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimID"), $Value);
+                    KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Value);
                     PHUE_setColor($this->ReadPropertyInteger("HueLightID"), $Value);
                     break;
                 case "color":
