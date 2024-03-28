@@ -214,7 +214,7 @@
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->SetValue($Ident, $Value);
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $Value);
-                    PHUE_RequestAction($this->ReadPropertyInteger("HueLightID"), "on", $Value);
+                    IPS_RequestAction($this->ReadPropertyInteger("HueLightID"),"on", $Value);
                     break;
                 case "brightness":
                     /** @noinspection PhpExpressionResultUnusedInspection */
