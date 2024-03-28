@@ -305,7 +305,7 @@
         }
 
         public function SetColor($Color){
-            $this->SetValue("brightness", $Color);
+            $this->SetValue("color", $Color);
 
 
             $actorState = false;
@@ -325,8 +325,7 @@
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
                 }
                 if ($this->ReadPropertyInteger("KNXoutcolorID") > 1) {
-                    $this->SendDebug("1", $this->dec2rgb($Color)["g"] . " - " . dechex($Color),0);
-                    KNX_WriteDPT232($this->ReadPropertyInteger("KNXoutcolorID"), 0,0,0);//$Color);
+                    KNX_WriteDPT232($this->ReadPropertyInteger("KNXoutcolorID"), $this->dec2rgb($Color)["r"],$this->dec2rgb($Color)["g"],$this->dec2rgb($Color)["b"]);//$Color);
                 }
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color", $this->ReadPropertyInteger("HueLightID")) > 1) {
                     RequestAction(IPS_GetObjectIDByIdent("color", $this->ReadPropertyInteger("HueLightID")), $Color);
