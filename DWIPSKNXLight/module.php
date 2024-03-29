@@ -36,11 +36,13 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
+            $hasKNXea = ($this->ReadPropertyInteger("KNXieaID") > 1);
             $hasKNXDim = ($this->ReadPropertyInteger("KNXdimvalueID") > 1);
 
-            /** @noinspection PhpExpressionResultUnusedInspection */
-            $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
-
+            if($hasKNXea) {
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
+            }
 
             if($hasKNXDim){
                 /** @noinspection PhpExpressionResultUnusedInspection */

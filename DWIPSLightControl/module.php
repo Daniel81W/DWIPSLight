@@ -1,4 +1,5 @@
-<?php /** @noinspection PhpRedundantClosingTagInspection */
+<?php /** @noinspection PhpExpressionResultUnusedInspection */
+/** @noinspection PhpRedundantClosingTagInspection */
 
 //include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
 	class DWIPSLightControl extends IPSModule {
