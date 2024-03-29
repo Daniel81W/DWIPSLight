@@ -86,7 +86,7 @@
                 $hasHueDim = (IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
                 $hasHueColor = (IPS_GetObjectIDByIdent("color", $huelightid) > 1);
                 $hasHueColorTemp = (IPS_GetObjectIDByIdent("color_temperature", $huelightid) > 1);
-                $hasHueScene = (IPS_GetObjectIDByIdent("scene", $huelightid) > 1);
+                $hasHueScene = (@IPS_GetObjectIDByIdent("scene", $huelightid) > 1);
             }
 
             if($hasKNXEA || $hasHueEA){
