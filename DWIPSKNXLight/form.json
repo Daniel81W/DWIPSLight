@@ -1,0 +1,23 @@
+{
+    "elements": [
+        {
+            "type": "ExpansionPanel",
+            "caption": "KNX Input",
+            "items": [
+                {
+                    "type": "SelectInstance",
+                    "name": "KNXieaID",
+                    "caption": "KNX an/aus",
+                    "validModules": ["{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
+                },{
+                    "type": "SelectInstance",
+                    "name": "KNXdimvalueID",
+                    "caption": "KNX Dimmwert",
+                    "validModules": ["{EBD0EE8D-DFA5-449F-BBE4-49CFC5F0EEB4}"]
+                }
+            ]
+        }
+    ],
+    "actions": [],
+    "status": []
+}

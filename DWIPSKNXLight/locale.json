@@ -1,0 +1,10 @@
+{
+    "translations": {
+        "de": {
+            "colortemp": "Farbtemperatur"
+        },
+        "en": {
+            "colortemp": "color_temperature"
+        }
+    }
+}
