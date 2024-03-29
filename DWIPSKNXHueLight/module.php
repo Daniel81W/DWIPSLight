@@ -163,7 +163,7 @@
 
             if($hasKNXScene || $hasHueScene){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableString("scene", "Szene", IPS_GetObjectIDByIdent("scene", $huelightid)['VariableProfile'], 5);
+                $this->RegisterVariableString("scene", "Szene", IPS_GetVariable(IPS_GetObjectIDByIdent("scene", $huelightid))['VariableProfile'], 5);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("scene");
                 if($hasKNXScene){
