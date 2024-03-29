@@ -1,4 +1,5 @@
-<?php /** @noinspection PhpExpressionResultUnusedInspection */
+<?php /** @noinspection PhpUnused */
+/** @noinspection PhpExpressionResultUnusedInspection */
 /** @noinspection PhpRedundantMethodOverrideInspection */
 /** @noinspection PhpRedundantClosingTagInspection */
 
@@ -49,10 +50,9 @@
                 $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("brightness");
-                if($hasKNXDim){
-                    /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXdimvalueID")), 10603);
-                }
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXdimvalueID")), 10603);
+
             }else{
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->UnregisterVariable("brightness");
