@@ -248,6 +248,9 @@
                 if($this->ReadPropertyInteger("KNXouteaID") > 1){
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $State);
                 }
+                if($this->ReadPropertyInteger("KNXoutActoreaID")<=1 && $SenderID != $this->ReadPropertyInteger("KNXieaID")){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXieaID"), $State);
+                }
                 if($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) >1){
                     RequestAction(IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")), $State);
                 }
