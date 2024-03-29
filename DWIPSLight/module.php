@@ -186,7 +186,7 @@
             //Wenn sendende ID Variable mit Ident "Value" der KNX an/aus DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "on" entsprechend setzen und wenn vorhanden Hue-Status auch entsprechend setzen
 	        if($SenderID == IPS_GetObjectIDByIdent("Value",$knxOnID) && $Message == 10603){
-                $this->SetState($Data[0]);
+                $this->SetState($Data[0], $SenderID);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Dim DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "brightness" entsprechend setzen und wenn vorhanden HueBrightness auch entsprechend setzen
@@ -211,7 +211,7 @@
 
             switch($Ident) {
                 case "on":
-                    $this->SetState($Value);
+                    $this->SetState($Value, 0);
                     break;
                 case "brightness":
                     $this->SetBrightness($Value);
@@ -228,7 +228,7 @@
 
         }
 
-        public function SetState($State){
+        public function SetState($State, $SenderID){
             $this->SetValue("on", $State);
             if($State) {
                 if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
@@ -237,6 +237,9 @@
                 IPS_Sleep(800);
                 if($this->ReadPropertyInteger("KNXouteaID") > 1){
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $State);
+                }
+                if($this->ReadPropertyInteger("KNXoutActoreaID")<=1 && $SenderID != $this->ReadPropertyInteger("KNXieaID")){
+                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXieaID"), $State);
                 }
                 if($this->ReadPropertyInteger("HueLightID") > 1 && IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")) >1){
                     RequestAction(IPS_GetObjectIDByIdent("on", $this->ReadPropertyInteger("HueLightID")), $State);
