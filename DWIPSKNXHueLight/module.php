@@ -73,15 +73,18 @@
             $hasKNXDim = ($this->ReadPropertyInteger("KNXdimvalueID") > 1);
             $hasKNXColor = ($this->ReadPropertyInteger("KNXcolorID") > 1);
             $hasKNXColorTemp = ($this->ReadPropertyInteger("KNXcolortempID") > 1);
+            $hasKNXScene = false;
             $hasHueEA = false;
             $hasHueDim = false;
             $hasHueColor = false;
             $hasHueColorTemp = false;
+            $hasHueScene = false;
             if($huelightid > 1) {
                 $hasHueEA = (IPS_GetObjectIDByIdent("on", $huelightid) > 1);
                 $hasHueDim = (IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
                 $hasHueColor = (IPS_GetObjectIDByIdent("color", $huelightid) > 1);
                 $hasHueColorTemp = (IPS_GetObjectIDByIdent("color_temperature", $huelightid) > 1);
+                $hasHueScene = (IPS_GetObjectIDByIdent("scene", $huelightid) > 1);
             }
 
             if($hasKNXEA || $hasHueEA){
@@ -154,6 +157,24 @@
             }else{
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->UnregisterVariable("color_temp");
+            }
+
+            if($hasKNXScene || $hasHueScene){
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterVariableString("scene", "Szene", IPS_GetObjectIDByIdent("scene", $huelightid)['VariableProfile'], 5);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("scene");
+                if($hasKNXScene){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    //$this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolortempID")), 10603);
+                }
+                if($hasHueScene){
+                    /** @noinspection PhpExpressionResultUnusedInspection */
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("scene", $huelightid), 10603);
+                }
+            }else{
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->UnregisterVariable("scene");
             }
 
 
