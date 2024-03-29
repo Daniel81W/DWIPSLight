@@ -3,7 +3,7 @@
 /** @noinspection PhpRedundantClosingTagInspection */
 
 //include_once("/var/lib/symcon/modules/DWIPSLib/libs/astro.php");
-	class DWIPSLight extends IPSModule {
+	class DWIPSKNXHueLight extends IPSModule {
 
 		public function Create()
 		{
