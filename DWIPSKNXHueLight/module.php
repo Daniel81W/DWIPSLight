@@ -29,6 +29,8 @@
             $this->RegisterPropertyInteger("KNXcolorID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXcolortempID", 0);
+            /** @noinspection PhpExpressionResultUnusedInspection */
+            $this->RegisterPropertyInteger("KNXsceneID", 0);
 
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutActoreaID", 0);
@@ -166,7 +168,7 @@
                 $this->EnableAction("scene");
                 if($hasKNXScene){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    //$this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXcolortempID")), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXsceneID")), 10603);
                 }
                 if($hasHueScene){
                     /** @noinspection PhpExpressionResultUnusedInspection */
