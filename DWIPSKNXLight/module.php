@@ -37,23 +37,23 @@
 			//Never delete this line!
 			parent::ApplyChanges();
             $this->SendDebug("", ($this->ReadPropertyInteger("KNXieaID") > 1),0);
-            $hasKNXea = ($this->ReadPropertyInteger("KNXieaID") > 1);
-            $hasKNXDim = ($this->ReadPropertyInteger("KNXdimvalueID") > 1);
+            $knxeaID = $this->ReadPropertyInteger("KNXieaID");
+            $knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
 
-            if($hasKNXea) {
+            if($knxeaID > 1) {
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
+                $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxeaID), 10603);
             }
 
-            if($hasKNXDim){
+            if($knxDimID > 1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("brightness");
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXdimvalueID")), 10603);
+                $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxDimID), 10603);
 
-            }else{
+            }elseif ($this->GetIDForIdent("brightness")>1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->UnregisterVariable("brightness");
             }
