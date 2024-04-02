@@ -52,7 +52,7 @@
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxDimID), 10603);
 
-            }elseif ($this->GetIDForIdent("brightness")>1){
+            }elseif (@$this->GetIDForIdent("brightness")>1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->UnregisterVariable("brightness");
             }
