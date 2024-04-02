@@ -342,9 +342,9 @@
 
             $actorState = false;
             if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
-                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
+                $actorState = GetValue(@IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
             }elseif($this->ReadPropertyInteger("KNXoutActoreaID") > 1){
-                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")));
+                $actorState = GetValue(@IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")));
             }
 
             if($Color>0) {
