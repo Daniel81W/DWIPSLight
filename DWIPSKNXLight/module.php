@@ -13,9 +13,9 @@
 
 
             /** @noinspection PhpExpressionResultUnusedInspection */
-            $this->RegisterPropertyInteger("KNXieaID", 0);
+            //$this->RegisterPropertyInteger("KNXieaID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
-            $this->RegisterPropertyInteger("KNXdimvalueID", 0);
+            //$this->RegisterPropertyInteger("KNXdimvalueID", 0);
 
 		}
 
@@ -31,10 +31,10 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-            $knxeaID = $this->ReadPropertyInteger("KNXieaID");
-            $knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
+            //$knxeaID = $this->ReadPropertyInteger("KNXieaID");
+            //$knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
 
-            if($knxeaID > 1) {
+            //if($knxeaID > 1) {
                 /** @noinspection PhpExpressionResultUnusedInspection */
             //    $this->RegisterVariableBoolean("on", "Status", "~Switch", 1);
                 /** @noinspection PhpExpressionResultUnusedInspection */
@@ -42,9 +42,9 @@
 
                 /** @noinspection PhpExpressionResultUnusedInspection */
             //    $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxeaID), 10603);
-            }
+            //}
 
-            if($knxDimID > 1){
+            //if($knxDimID > 1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
             //    $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
@@ -52,15 +52,15 @@
                 /** @noinspection PhpExpressionResultUnusedInspection */
             //    $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxDimID), 10603);
 
-            }elseif (@$this->GetIDForIdent("brightness")>1){
+           // }elseif (@$this->GetIDForIdent("brightness")>1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
             //    $this->UnregisterVariable("brightness");
-            }
+            //}
 
-            if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
+            //if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
                 /** @noinspection PhpUndefinedFunctionInspection */
-                DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
-            }
+                //DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
+            //}
 		}
 
 		/**
