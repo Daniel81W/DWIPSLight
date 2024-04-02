@@ -17,12 +17,6 @@
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXdimvalueID", 0);
 
-
-            /** @noinspection PhpExpressionResultUnusedInspection */
-            $this->RegisterVariableBoolean("on", "Status", "~Switch", 1);
-            /** @noinspection PhpExpressionResultUnusedInspection */
-            $this->EnableAction("on");
-
 		}
 
 
@@ -36,11 +30,16 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-            $this->SendDebug("", ($this->ReadPropertyInteger("KNXieaID") > 1),0);
+
             $knxeaID = $this->ReadPropertyInteger("KNXieaID");
             $knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
 
             if($knxeaID > 1) {
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->RegisterVariableBoolean("on", "Status", "~Switch", 1);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("on");
+
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxeaID), 10603);
             }
