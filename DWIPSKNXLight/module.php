@@ -13,9 +13,9 @@
 
 
             /** @noinspection PhpExpressionResultUnusedInspection */
-            //$this->RegisterPropertyInteger("KNXieaID", 0);
+            $this->RegisterPropertyInteger("KNXieaID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
-            //$this->RegisterPropertyInteger("KNXdimvalueID", 0);
+            $this->RegisterPropertyInteger("KNXdimvalueID", 0);
 
 		}
 
