@@ -82,10 +82,10 @@
             $hasHueColorTemp = false;
             $hasHueScene = false;
             if($huelightid > 1) {
-                $hasHueEA = (IPS_GetObjectIDByIdent("on", $huelightid) > 1);
-                $hasHueDim = (IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
-                $hasHueColor = (IPS_GetObjectIDByIdent("color", $huelightid) > 1);
-                $hasHueColorTemp = (IPS_GetObjectIDByIdent("color_temperature", $huelightid) > 1);
+                $hasHueEA = (@IPS_GetObjectIDByIdent("on", $huelightid) > 1);
+                $hasHueDim = (@IPS_GetObjectIDByIdent("brightness", $huelightid) > 1);
+                $hasHueColor = (@IPS_GetObjectIDByIdent("color", $huelightid) > 1);
+                $hasHueColorTemp = (@IPS_GetObjectIDByIdent("color_temperature", $huelightid) > 1);
                 $hasHueScene = (@IPS_GetObjectIDByIdent("scene", $huelightid) > 1);
             }
 
@@ -182,7 +182,7 @@
 
             if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
                 /** @noinspection PhpUndefinedFunctionInspection */
-                DWIPSLightControl_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
+                @DWIPSLIGHTCONTROL_RegisterLight(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")[0], $this->InstanceID);
             }
 		}
 
@@ -244,6 +244,9 @@
                     break;
                 case "color_temp":
                     $this->SetColorTemperature($Value);
+                    break;
+                case "scene":
+                    $this->SetScene($Value);
                     break;
                 default:
                     throw new Exception("Invalid Ident");
@@ -336,12 +339,11 @@
         public function SetColor($Color){
             $this->SetValue("color", $Color);
 
-
             $actorState = false;
             if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
-                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
+                $actorState = GetValue(@IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
             }elseif($this->ReadPropertyInteger("KNXoutActoreaID") > 1){
-                $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")));
+                $actorState = GetValue(@IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXoutActoreaID")));
             }
 
             if($Color>0) {
@@ -385,7 +387,6 @@
         public function SetColorTemperature($ColorTemperature){
             $this->SetValue("color", $ColorTemperature);
 
-
             $actorState = false;
             if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
                 $actorState = GetValue(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
@@ -394,28 +395,29 @@
             }
 
 
-                $this->SetValue("on", true);
-                if (!$actorState) {
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
-                    IPS_Sleep(1500);
-                }
-                if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
-                    KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
-                }
-                if ($this->ReadPropertyInteger("KNXoutcolortempID") > 1) {
-                    KNX_WriteDPT7($this->ReadPropertyInteger("KNXoutcolortempID"), $ColorTemperature);
-                }
-                if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")) > 1) {
+            $this->SetValue("on", true);
+            if (!$actorState) {
+                KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
+                IPS_Sleep(1500);
+            }
+            if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
+                KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
+            }
+            if ($this->ReadPropertyInteger("KNXoutcolortempID") > 1) {
+                KNX_WriteDPT7($this->ReadPropertyInteger("KNXoutcolortempID"), $ColorTemperature);
+            }
+            if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")) > 1) {
+                RequestAction(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")), $this->KelvinToMired($ColorTemperature));
+                IPS_Sleep(1500);
+                if(GetValue(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID"))) != $this->KelvinToMired($ColorTemperature)) {
                     RequestAction(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")), $this->KelvinToMired($ColorTemperature));
-                    IPS_Sleep(1500);
-                    if(GetValue(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID"))) != $this->KelvinToMired($ColorTemperature)) {
-                        RequestAction(IPS_GetObjectIDByIdent("color_temperature", $this->ReadPropertyInteger("HueLightID")), $this->KelvinToMired($ColorTemperature));
-                    }
                 }
-
-
+            }
         }
 
+        public function SetScene($Scene){
+
+        }
         /**
          * Converts color temperature in mired to color temperature in Kelvin
          * @param int $mired color temperature in mired
