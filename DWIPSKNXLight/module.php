@@ -36,7 +36,7 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();
-
+            $this->SendDebug("", ($this->ReadPropertyInteger("KNXieaID") > 1),0);
             $hasKNXea = ($this->ReadPropertyInteger("KNXieaID") > 1);
             $hasKNXDim = ($this->ReadPropertyInteger("KNXdimvalueID") > 1);
 
