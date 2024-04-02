@@ -339,7 +339,6 @@
         public function SetColor($Color){
             $this->SetValue("color", $Color);
 
-
             $actorState = false;
             if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
                 $actorState = GetValue(@IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXinActoreaID")));
