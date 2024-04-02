@@ -44,18 +44,18 @@
                 $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxeaID), 10603);
             }
 
-            //if($knxDimID > 1){
+            if($knxDimID > 1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-            //    $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
+                $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
-            //    $this->EnableAction("brightness");
+                $this->EnableAction("brightness");
                 /** @noinspection PhpExpressionResultUnusedInspection */
-            //    $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxDimID), 10603);
+                $this->RegisterMessage(@IPS_GetObjectIDByIdent("Value", $knxDimID), 10603);
 
-           // }elseif (@$this->GetIDForIdent("brightness")>1){
+            }elseif (@$this->GetIDForIdent("brightness")>1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-            //    $this->UnregisterVariable("brightness");
-            //}
+                $this->UnregisterVariable("brightness");
+            }
 
             //if(count(IPS_GetInstanceListByModuleID("{A3BDFBC5-CDDB-5656-F265-DB4132FEE4B0}")) > 0) {
                 /** @noinspection PhpUndefinedFunctionInspection */
