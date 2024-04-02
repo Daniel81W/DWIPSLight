@@ -11,12 +11,10 @@
 			//Never delete this line!
 			parent::Create();
 
-
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXieaID", 0);
             /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXdimvalueID", 0);
-
 		}
 
 
@@ -31,8 +29,8 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-            //$knxeaID = $this->ReadPropertyInteger("KNXieaID");
-            //$knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
+            $knxeaID = $this->ReadPropertyInteger("KNXieaID");
+            $knxDimID = $this->ReadPropertyInteger("KNXdimvalueID");
 
             //if($knxeaID > 1) {
                 /** @noinspection PhpExpressionResultUnusedInspection */
