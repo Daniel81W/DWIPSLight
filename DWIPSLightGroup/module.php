@@ -11,7 +11,6 @@
 			parent::Create();
 
             $this->RegisterPropertyString("Lights", "");
-            $this->RegisterVariableInteger("oncount", $this->Translate("num_lights_on"),"",1);
 
 		}
 
@@ -40,21 +39,7 @@
 		}
 
 		public function MessageSink($TimeStamp, $SenderID, $Message, $Data) {
-            IPS_Sleep(1000);
-            $lightson = 0;
-            $lights = IPS_GetInstanceListByModuleID("{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}");
-            foreach ($lights as $light){
-                if(GetValue(IPS_GetObjectIDByIdent("on", $light))){
-                   $lightson += 1;
-                }
-            }
-            $lights = IPS_GetInstanceListByModuleID("{9622A505-C954-346D-7F85-BD1901EDE263}");
-            foreach ($lights as $light){
-                if(GetValue(IPS_GetObjectIDByIdent("on", $light))){
-                    $lightson += 1;
-                }
-            }
-            $this->SetValue("oncount", $lightson);
+
 		}
 
         public function RegisterLight($lightId){

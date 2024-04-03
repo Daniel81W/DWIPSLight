@@ -17,11 +17,20 @@
                     "name": "InstanceID",
                     "width": "75px",
                     "add": 0,
-                    "save": true
+                    "save": true,
+                    "edit": {
+                        "type": "SelectInstance",
+                        "validModules": ["{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}","{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
+                    }
                 }, {
                     "caption": "Name",
                     "name": "Name",
                     "width": "auto",
+                    "add": ""
+                }, {
+                    "caption": "Type",
+                    "name": "Type",
+                    "width": "40px",
                     "add": ""
                 }, {
                     "caption": "State",
@@ -35,6 +44,11 @@
                 "Name": "ABCD",
                 "State": ""
             }]
+        },
+        {
+            "type": "Button",
+            "caption": "Show List Values",
+            "onClick": "var_dump($Lights);"
         }
     ],
     "actions": [],
