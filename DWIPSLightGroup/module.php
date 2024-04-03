@@ -26,7 +26,7 @@
 			parent::ApplyChanges();
 
             //TODO Array mit LichtIDs laden
-            $lightIDArray = [1,2];
+            $lightIDArray = [];
 
             //
             $hasOn = @$this->GetIDForIdent("on")>1;
@@ -74,14 +74,23 @@
             }
 
             //TODO Szenenarray laden
-            $scenes = ["1","2"];
+            $scenes = [];
 
             if(count($scenes) > 0){
                 if(!IPS_VariableProfileExists("DWIPS_".$this->Translate("scene")."_".$this->InstanceID)){
                     IPS_CreateVariableProfile("DWIPS_".$this->Translate("scene")."_".$this->InstanceID,3);
                 }else{
-
+                    $sceneProfile = IPS_GetVariableProfile("DWIPS_".$this->Translate("scene")."_".$this->InstanceID);
+                    $sceneAssocs = $sceneProfile["Associations"];
+                    foreach ($sceneAssocs as $assoc){
+                        IPS_SetVariableProfileAssociation($sceneProfile["ProfileName"], $assoc["Value"],"","", -1);
+                    }
                 }
+                foreach ($scenes as $scene){
+                    IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene,$scene,"", -1);
+                }
+
+                $this->RegisterVariableString("scene", $this->Translate("scene"),"DWIPS_".$this->Translate("scene")."_".$this->InstanceID, 5);
             }
 		}
 
