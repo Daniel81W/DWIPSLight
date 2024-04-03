@@ -1,0 +1,12 @@
+{
+    "id": "{1BC1CDA4-6D78-C271-0712-6357094C691B}",
+    "name": "DWIPSLightGroup",
+    "type": 3,
+    "vendor": "DWIPS",
+    "aliases": [],
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "DWIPSLIGHTGROUP",
+    "url": "https://github.com/Daniel81W/DWIPSLight"
+}

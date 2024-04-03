@@ -96,11 +96,11 @@
                 $this->EnableAction("on");
                 if($hasKNXEA){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXieaID")), VM_UPDATE);
                 }
                 if($hasHueEA){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $huelightid), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $huelightid), VM_UPDATE);
                 }
             }else{
                 /** @noinspection PhpExpressionResultUnusedInspection */
@@ -168,11 +168,11 @@
                 $this->EnableAction("scene");
                 if($hasKNXScene){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXsceneID")), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("Value", $this->ReadPropertyInteger("KNXsceneID")), VM_UPDATE);
                 }
                 if($hasHueScene){
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterMessage(IPS_GetObjectIDByIdent("scene", $huelightid), 10603);
+                    $this->RegisterMessage(IPS_GetObjectIDByIdent("scene", $huelightid), VM_UPDATE);
                 }
             }else{
                 /** @noinspection PhpExpressionResultUnusedInspection */
@@ -208,22 +208,22 @@
 
             //Wenn sendende ID Variable mit Ident "Value" der KNX an/aus DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "on" entsprechend setzen und wenn vorhanden Hue-Status auch entsprechend setzen
-	        if($SenderID == IPS_GetObjectIDByIdent("Value",$knxOnID) && $Message == 10603){
+	        if($SenderID == IPS_GetObjectIDByIdent("Value",$knxOnID) && $Message == VM_UPDATE){
                 $this->SetState($Data[0], $SenderID);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Dim DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "brightness" entsprechend setzen und wenn vorhanden HueBrightness auch entsprechend setzen
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxBrightnessID) && $Message == 10603){
+            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxBrightnessID) && $Message == VM_UPDATE){
                 $this->SetBrightness($Data[0]);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Farb DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "color" entsprechend setzen und wenn vorhanden Hue-Color auch entsprechend setzen
-            if($SenderID == IPS_GetObjectIDByIdent("Value0",$knxColorID) && $Message == 10603){
+            if($SenderID == IPS_GetObjectIDByIdent("Value0",$knxColorID) && $Message == VM_UPDATE){
                 $this->SetColor($Data[0]);
             }
             //Wenn sendende ID Variable mit Ident "Value" der KNX Farbtemp DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "color_temp" entsprechend setzen und wenn vorhanden Hue-colortemp auch entsprechend setzen
-            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorTemperatureID) && $Message == 10603){
+            if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorTemperatureID) && $Message == VM_UPDATE){
                 $this->SetColorTemperature($Data[0]);
             }
 

@@ -5,8 +5,8 @@
             "name": "Lights",
             "caption": "Lights",
             "rowCount": 5,
-            "add": false,
-            "delete": false,
+            "add": true,
+            "delete": true,
             "sort": {
                 "column": "Name",
                 "direction": "ascending"
@@ -29,7 +29,12 @@
                     "width": "40px",
                     "add": "New!"
                 }
-            ]
+            ],
+            "values": [{
+                "InstanceID": 12435,
+                "Name": "ABCD",
+                "State": ""
+            }]
         }
     ],
     "actions": [],
