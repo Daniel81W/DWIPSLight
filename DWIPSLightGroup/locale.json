@@ -2,13 +2,17 @@
     "translations": {
         "de": {
             "colortemp": "Farbtemperatur",
-            "num_lights_on":"Anzahl eingeschalteter Lichter",
-            "Lights": "Lichter"
+            "state": "Status",
+            "brightness": "Helligkleit",
+            "color": "Farbe",
+            "scene": "Szene"
         },
         "en": {
             "colortemp": "color_temperature",
-            "num_lights_on":"number of lights switched on",
-            "Lights": "lights"
+            "state": "state",
+            "brightness": "brightness",
+            "color": "color",
+            "scene": "scene"
         }
     }
 }

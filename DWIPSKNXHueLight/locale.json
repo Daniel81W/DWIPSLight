@@ -1,10 +1,18 @@
 {
     "translations": {
         "de": {
-            "colortemp": "Farbtemperatur"
+            "colortemp": "Farbtemperatur",
+            "state": "Status",
+            "brightness": "Helligkleit",
+            "color": "Farbe",
+            "scene": "Szene"
         },
         "en": {
-            "colortemp": "color_temperature"
+            "colortemp": "color_temperature",
+            "state": "state",
+            "brightness": "brightness",
+            "color": "color",
+            "scene": "scene"
         }
     }
 }

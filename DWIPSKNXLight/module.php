@@ -35,7 +35,7 @@
             if($knxeaID > 1) {
                 if(!@$this->GetIDForIdent("on")) {
                     /** @noinspection PhpExpressionResultUnusedInspection */
-                    $this->RegisterVariableBoolean("on", "Status", "~Switch", 1);
+                    $this->RegisterVariableBoolean("on", $this->Translate("state"), "~Switch", 1);
 
                     /** @noinspection PhpExpressionResultUnusedInspection */
                     $this->EnableAction("on");
@@ -46,7 +46,7 @@
 
             if($knxDimID > 1){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
+                $this->RegisterVariableInteger("brightness", $this->Translate("brightness"), "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("brightness");
                 /** @noinspection PhpExpressionResultUnusedInspection */

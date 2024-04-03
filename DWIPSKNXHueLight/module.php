@@ -91,7 +91,7 @@
 
             if($hasKNXEA || $hasHueEA){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableBoolean("on", "Status", "~Switch", 1);
+                $this->RegisterVariableBoolean("on", $this->Translate("state"), "~Switch", 1);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("on");
                 if($hasKNXEA){
@@ -109,7 +109,7 @@
 
             if($hasKNXDim || $hasHueDim){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableInteger("brightness", "Helligkeit", "~Intensity.100", 2);
+                $this->RegisterVariableInteger("brightness", $this->Translate("brightness"), "~Intensity.100", 2);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("brightness");
                 if($hasKNXDim){
@@ -127,7 +127,7 @@
 
             if($hasKNXColor || $hasHueColor){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableInteger("color", "Farbe", "~HexColor", 3);
+                $this->RegisterVariableInteger("color", $this->Translate("color"), "~HexColor", 3);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("color");
                 if($hasKNXColor){
@@ -145,7 +145,7 @@
 
             if($hasKNXColorTemp || $hasHueColorTemp){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableInteger("color_temp", "Farbtemperatur", "DWIPS.Light.".$this->Translate("colortemp"), 4);
+                $this->RegisterVariableInteger("color_temp", $this->Translate("colortemp"), "DWIPS.Light.".$this->Translate("colortemp"), 4);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("color_temp");
                 if($hasKNXColorTemp){
@@ -163,7 +163,7 @@
 
             if($hasKNXScene || $hasHueScene){
                 /** @noinspection PhpExpressionResultUnusedInspection */
-                $this->RegisterVariableString("scene", "Szene", IPS_GetVariable(IPS_GetObjectIDByIdent("scene", $huelightid))['VariableProfile'], 5);
+                $this->RegisterVariableString("scene", $this->Translate("scene"), IPS_GetVariable(IPS_GetObjectIDByIdent("scene", $huelightid))['VariableProfile'], 5);
                 /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->EnableAction("scene");
                 if($hasKNXScene){

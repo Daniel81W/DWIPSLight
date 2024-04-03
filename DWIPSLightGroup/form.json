@@ -49,6 +49,32 @@
             "type": "Button",
             "caption": "Show List Values",
             "onClick": "var_dump($Lights);"
+        },
+        {
+            "type": "List",
+            "name": "scenes",
+            "caption": "Szenen",
+            "rowCount": 5,
+            "add": true,
+            "delete": true,
+            "sort": {
+                "column": "Name",
+                "direction": "ascending"
+            },
+            "columns": [
+                {
+                    "caption": "Name",
+                    "name": "Name",
+                    "width": "auto",
+                    "add": "",
+                    "save": true
+                }, {
+                    "caption": "State",
+                    "name": "State",
+                    "width": "40px",
+                    "add": "New!"
+                }
+            ]
         }
     ],
     "actions": [],
