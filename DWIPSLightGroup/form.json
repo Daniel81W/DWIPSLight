@@ -26,12 +26,14 @@
                     "caption": "Name",
                     "name": "Name",
                     "width": "auto",
-                    "add": ""
+                    "add": "",
+                    "save": true
                 }, {
                     "caption": "Type",
                     "name": "Type",
                     "width": "40px",
-                    "add": ""
+                    "add": "",
+                    "save": true
                 }
             ]
         },
