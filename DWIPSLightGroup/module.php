@@ -34,8 +34,10 @@
             $hasBrightness = @$this->GetIDForIdent("brightness")>1;
             $hasColor = @$this->GetIDForIdent("color")>1;
             $hasColorTemp = @$this->GetIDForIdent("color_temp")>1;
+            $this->SendDebug("hasOn", $hasOn, 0);
             foreach ($lightArray as $light) {
                 if(!$hasOn){
+                    $this->SendDebug("ID",@IPS_GetObjectIDByIdent("on", $light["InstandeID"]),0);
                     if(@IPS_GetObjectIDByIdent("on", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableBoolean("on", $this->Translate("state"),"~Switch",1);
