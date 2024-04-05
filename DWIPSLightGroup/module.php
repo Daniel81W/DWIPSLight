@@ -27,7 +27,7 @@
 
             //TODO Array mit LichtIDs laden
             $lightIDArray = json_decode($this->ReadPropertyString("Lights"));
-            $this->SendDebug("", "".$lightIDArray[0],0);
+            $this->SendDebug("", "".$lightIDArray[0]["InstanceID"],0);
             $lightIDArray = [];
 
             //
