@@ -26,8 +26,8 @@
 			parent::ApplyChanges();
 
             //TODO Array mit LichtIDs laden
-            $lightIDArray = json_decode($this->ReadPropertyString("lights"));
-            $this->SendDebug("", count($lightIDArray[]),0);
+            $lightIDArray = json_decode($this->ReadPropertyString("Lights"));
+            $this->SendDebug("", count($lightIDArray),0);
             $lightIDArray = [];
 
             //
