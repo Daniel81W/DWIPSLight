@@ -78,7 +78,7 @@
 */
 
             if(@IPS_GetObjectIDByIdent("on", $lightId)>0){
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), 10603);
+                $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), VM_UPDATE);
             }
         }
 

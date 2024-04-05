@@ -51,7 +51,7 @@
 
             $colortempprofilename = "DWIPS.Light.".$this->Translate("colortemp");
             if (!IPS_VariableProfileExists($colortempprofilename)){
-                IPS_CreateVariableProfile($colortempprofilename, 1);
+                IPS_CreateVariableProfile($colortempprofilename, VARIABLETYPE_INTEGER);
                 IPS_SetVariableProfileValues($colortempprofilename,2000, 6536, 1);
                 IPS_SetVariableProfileText($colortempprofilename, "", " K");
             }

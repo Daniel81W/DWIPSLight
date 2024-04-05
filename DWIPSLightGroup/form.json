@@ -13,14 +13,14 @@
             },
             "columns": [
                 {
-                    "caption": "InstanceID",
+                    "caption": "Light",
                     "name": "InstanceID",
-                    "width": "75px",
+                    "width": "150px",
                     "add": 0,
                     "save": true,
                     "edit": {
                         "type": "SelectInstance",
-                        "validModules": ["{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}","{F3058AB2-AFDC-4479-A053-5F4599DF6F5B}"]
+                        "validModules": ["{71C85E1B-BD56-1C5A-1EBF-70CCB6E4523A}","{9622A505-C954-346D-7F85-BD1901EDE263}"]
                     }
                 }, {
                     "caption": "Name",
@@ -32,23 +32,13 @@
                     "name": "Type",
                     "width": "40px",
                     "add": ""
-                }, {
-                    "caption": "State",
-                    "name": "State",
-                    "width": "40px",
-                    "add": "New!"
                 }
-            ],
-            "values": [{
-                "InstanceID": 12435,
-                "Name": "ABCD",
-                "State": ""
-            }]
+            ]
         },
         {
             "type": "Button",
             "caption": "Show List Values",
-            "onClick": "var_dump($Lights);"
+            "onClick": "var_dump($Lights[\"selected\"]);"
         },
         {
             "type": "List",
