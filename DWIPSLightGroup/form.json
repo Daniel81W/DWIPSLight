@@ -38,7 +38,7 @@
         {
             "type": "Button",
             "caption": "Show List Values",
-            "onClick": "var_dump(json_decode($Lights));"
+            "onClick": "var_dump($Lights);"
         },
         {
             "type": "List",
