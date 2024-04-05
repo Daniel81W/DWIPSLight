@@ -74,7 +74,7 @@
             }
 
             //TODO Szenenarray laden
-            $scenes = [];
+            $scenes = json_decode($this->ReadPropertyString("Lights"), true);
 
             if(count($scenes) > 0){
                 if(!IPS_VariableProfileExists("DWIPS_".$this->Translate("scene")."_".$this->InstanceID)){
@@ -87,7 +87,7 @@
                     }
                 }
                 foreach ($scenes as $scene){
-                    IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene,$scene,"", -1);
+                    IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene["Name"],$scene["Name"],"", -1);
                 }
 
                 $this->RegisterVariableString("scene", $this->Translate("scene"),"DWIPS_".$this->Translate("scene")."_".$this->InstanceID, 5);
