@@ -25,20 +25,16 @@
 			//Never delete this line!
 			parent::ApplyChanges();
 
-            //TODO Array mit LichtIDs laden
             $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
-            //$lightArray = [];
 
             //
             $hasOn = @$this->GetIDForIdent("on")>1;
             $hasBrightness = @$this->GetIDForIdent("brightness")>1;
             $hasColor = @$this->GetIDForIdent("color")>1;
             $hasColorTemp = @$this->GetIDForIdent("color_temp")>1;
-            $this->SendDebug("hasOn", $hasOn, 0);
             foreach ($lightArray as $light) {
                 if(!$hasOn){
-                    $this->SendDebug("ID",@IPS_GetObjectIDByIdent("on", $light["InstanceID"]),0);
-                    if(@IPS_GetObjectIDByIdent("on", $light["InstandeID"]) >1){
+                    if(@IPS_GetObjectIDByIdent("on", $light["InstanceID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableBoolean("on", $this->Translate("state"),"~Switch",1);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -96,6 +92,29 @@
                 $this->RegisterVariableString("scene", $this->Translate("scene"),"DWIPS_".$this->Translate("scene")."_".$this->InstanceID, 5);
             }
 		}
+
+        public function RequestAction($Ident, $Value){
+
+            $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
+
+            switch ($Ident){
+                case "on":
+                    foreach ($lightArray as $light) {
+                        RequestAction(@IPS_GetObjectIDByIdent("on", $light["InstanceID"]), $Value);
+                    }
+                    break;
+                case "brightness":
+                    break;
+                case "color":
+                    break;
+                case "color_temp":
+                    break;
+                case "scene":
+                    break;
+                default:
+                    throw new Exception("Invalid Ident");
+            }
+        }
 
 		/**
         * Die folgenden Funktionen stehen automatisch zur Verfügung, wenn das Modul über die "Module Control" eingefügt wurden.
