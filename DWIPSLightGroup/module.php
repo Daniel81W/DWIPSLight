@@ -29,7 +29,7 @@
             $lightIDArray = json_decode($this->ReadPropertyString("Lights"));
             $this->SendDebug("", print_r($lightIDArray, true),0);
             foreach ($lightIDArray as $l){
-                $this->SendDebug("", print_r($l, true),0);
+                $this->SendDebug("", print_r($l.InstanceID, true),0);
             }
             $lightIDArray = [];
 
