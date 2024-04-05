@@ -11,6 +11,7 @@
 			parent::Create();
 
             $this->RegisterPropertyString("Lights", "");
+            $this->RegisterPropertyString("Scenes", "");
 
 		}
 
