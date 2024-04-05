@@ -37,7 +37,7 @@
             $this->SendDebug("hasOn", $hasOn, 0);
             foreach ($lightArray as $light) {
                 if(!$hasOn){
-                    $this->SendDebug("ID",@IPS_GetObjectIDByIdent("on", $light["InstandeID"]),0);
+                    $this->SendDebug("ID",@IPS_GetObjectIDByIdent("on", $light["InstanceID"]),0);
                     if(@IPS_GetObjectIDByIdent("on", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableBoolean("on", $this->Translate("state"),"~Switch",1);
@@ -47,7 +47,7 @@
                     }
                 }
                 if(!$hasBrightness){
-                    if(@IPS_GetObjectIDByIdent("brightness", $light["InstandeID"]) >1){
+                    if(@IPS_GetObjectIDByIdent("brightness", $light["InstanceID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("brightness", $this->Translate("brightness"), "~Intensity.100", 2);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -57,7 +57,7 @@
                 }
 
                 if(!$hasColor){
-                    if(@IPS_GetObjectIDByIdent("color", $light["InstandeID"]) >1){
+                    if(@IPS_GetObjectIDByIdent("color", $light["InstanceID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("color", $this->Translate("color"), "~HexColor", 3);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -66,7 +66,7 @@
                     }
                 }
                 if(!$hasColorTemp){
-                    if(@IPS_GetObjectIDByIdent("color_temp", $light["InstandeID"]) >1){
+                    if(@IPS_GetObjectIDByIdent("color_temp", $light["InstanceID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("color_temp", $this->Translate("colortemp"), "DWIPS.Light.".$this->Translate("colortemp"), 4);
                         /** @noinspection PhpExpressionResultUnusedInspection */
