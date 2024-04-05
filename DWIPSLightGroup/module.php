@@ -26,20 +26,17 @@
 			parent::ApplyChanges();
 
             //TODO Array mit LichtIDs laden
-            $lightIDArray = json_decode($this->ReadPropertyString("Lights"), true);
-            foreach ($lightIDArray as $l){
-                $this->SendDebug("", print_r($l["InstanceID"], true),0);
-            }
-            $lightIDArray = [];
+            $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
+            //$lightArray = [];
 
             //
             $hasOn = @$this->GetIDForIdent("on")>1;
             $hasBrightness = @$this->GetIDForIdent("brightness")>1;
             $hasColor = @$this->GetIDForIdent("color")>1;
             $hasColorTemp = @$this->GetIDForIdent("color_temp")>1;
-            foreach ($lightIDArray as $lightID) {
+            foreach ($lightArray as $light) {
                 if(!$hasOn){
-                    if(@IPS_GetObjectIDByIdent("on", $lightID) >1){
+                    if(@IPS_GetObjectIDByIdent("on", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableBoolean("on", $this->Translate("state"),"~Switch",1);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -48,7 +45,7 @@
                     }
                 }
                 if(!$hasBrightness){
-                    if(@IPS_GetObjectIDByIdent("brightness", $lightID) >1){
+                    if(@IPS_GetObjectIDByIdent("brightness", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("brightness", $this->Translate("brightness"), "~Intensity.100", 2);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -58,7 +55,7 @@
                 }
 
                 if(!$hasColor){
-                    if(@IPS_GetObjectIDByIdent("color", $lightID) >1){
+                    if(@IPS_GetObjectIDByIdent("color", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("color", $this->Translate("color"), "~HexColor", 3);
                         /** @noinspection PhpExpressionResultUnusedInspection */
@@ -67,7 +64,7 @@
                     }
                 }
                 if(!$hasColorTemp){
-                    if(@IPS_GetObjectIDByIdent("color_temp", $lightID) >1){
+                    if(@IPS_GetObjectIDByIdent("color_temp", $light["InstandeID"]) >1){
                         /** @noinspection PhpExpressionResultUnusedInspection */
                         $this->RegisterVariableInteger("color_temp", $this->Translate("colortemp"), "DWIPS.Light.".$this->Translate("colortemp"), 4);
                         /** @noinspection PhpExpressionResultUnusedInspection */
