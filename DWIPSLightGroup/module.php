@@ -100,14 +100,23 @@
             switch ($Ident){
                 case "on":
                     foreach ($lightArray as $light) {
-                        RequestAction(@IPS_GetObjectIDByIdent("on", $light["InstanceID"]), $Value);
+                        @RequestAction(@IPS_GetObjectIDByIdent("on", $light["InstanceID"]), $Value);
                     }
                     break;
                 case "brightness":
+                    foreach ($lightArray as $light) {
+                        @RequestAction(@IPS_GetObjectIDByIdent("brightness", $light["InstanceID"]), $Value);
+                    }
                     break;
                 case "color":
+                    foreach ($lightArray as $light) {
+                        @RequestAction(@IPS_GetObjectIDByIdent("color", $light["InstanceID"]), $Value);
+                    }
                     break;
                 case "color_temp":
+                    foreach ($lightArray as $light) {
+                        @RequestAction(@IPS_GetObjectIDByIdent("color_temp", $light["InstanceID"]), $Value);
+                    }
                     break;
                 case "scene":
                     break;
