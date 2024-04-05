@@ -74,7 +74,7 @@
             }
 
             //TODO Szenenarray laden
-            $scenes = json_decode($this->ReadPropertyString("Lights"), true);
+            $scenes = json_decode($this->ReadPropertyString("Scenes"), true);
 
             if(count($scenes) > 0){
                 if(!IPS_VariableProfileExists("DWIPS_".$this->Translate("scene")."_".$this->InstanceID)){
@@ -87,6 +87,7 @@
                     }
                 }
                 foreach ($scenes as $scene){
+                    $this->SendDebug("",$scene["Name",0);
                    // IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene["Name"],$scene["Name"],"", -1);
                 }
 
