@@ -87,7 +87,7 @@
                     }
                 }
                 foreach ($scenes as $scene){
-                    $this->SendDebug("",$scene["Name",0);
+                    $this->SendDebug("",$scene["Name"],0);
                    // IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene["Name"],$scene["Name"],"", -1);
                 }
 
