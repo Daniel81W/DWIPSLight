@@ -91,7 +91,11 @@
                     IPS_SetVariableProfileAssociation("DWIPS_".$this->Translate("scene")."_".$this->InstanceID, $scene["Name"],$scene["Name"],"", -1);
                 }
 
+                /** @noinspection PhpExpressionResultUnusedInspection */
                 $this->RegisterVariableString("scene", $this->Translate("scene"),"DWIPS_".$this->Translate("scene")."_".$this->InstanceID, 5);
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $this->EnableAction("scene");
+
             }
 		}
 
