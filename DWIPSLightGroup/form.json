@@ -59,12 +59,11 @@
                     "name": "Name",
                     "width": "auto",
                     "add": "",
-                    "save": true
-                }, {
-                    "caption": "State",
-                    "name": "State",
-                    "width": "40px",
-                    "add": "New!"
+                    "save": true,
+                    "edit": {
+                        "type": "ValidationTextBox",
+                        "caption": "Name"
+                    }
                 }
             ]
         }
