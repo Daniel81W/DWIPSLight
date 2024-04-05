@@ -38,7 +38,7 @@
         {
             "type": "Button",
             "caption": "Show List Values",
-            "onClick": "var_dump(count($Lights)) . \"  -  \" . var_dump($Lights);"
+            "onClick": "var_dump(gettype($Lights)) . \"  -  \" . var_dump($Lights);"
         },
         {
             "type": "List",
