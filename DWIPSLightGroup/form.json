@@ -66,13 +66,18 @@
                     }
                 }
             ]
+        },
+        {
+            "type": "Button",
+            "caption": "Show Scene Values",
+            "onClick": "var_dump($Scenes);"
         }
     ],
     "actions": [
         {
             "type": "Button",
             "caption": "Show Scene Values",
-            "onClick": "var_dump($Scenes[\"Name\"]);"
+            "onClick": "var_dump($Scenes);"
         }
     ],
     "status": []
