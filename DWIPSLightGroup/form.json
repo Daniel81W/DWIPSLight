@@ -72,7 +72,7 @@
         {
             "type": "Button",
             "caption": "Show Scene Values",
-            "onClick": "var_dump($scenes[\"Name\"]);"
+            "onClick": "var_dump($Scenes[\"Name\"]);"
         }
     ],
     "status": []
