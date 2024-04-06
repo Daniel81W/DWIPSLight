@@ -12,7 +12,9 @@
 
             $this->RegisterPropertyString("Lights", "");
             $this->RegisterPropertyString("Scenes", "");
-            $this->RegisterAttributeString("scenevalues", "");
+            $this->RegisterAttributeString("SceneValues", "");
+            $emptyArr = [];
+            $this->WriteAttributeString("SceneValues", json_encode($emptyArr));
 
 		}
 
@@ -148,30 +150,23 @@
 
 		}
 
-        public function RegisterLight($lightId){
-/*
-            $lightArrString = $this->ReadPropertyString("Lights");
-            $lightArr = json_decode($lightArrString);
+        public function StoreScene($SceneName)
+        {
+            $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
+            $scene = [];
+            $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
 
-            $newLights = [];
-            foreach ($lightArr as $light) {
-                array_push($newLights, ["InstanceID" => ])
-                $newLights[] = [
-                        'info1' => $info['info1'],
-                        'info2' => $info['info2'],
-                        'info' => $info['info1'] . $info['info2'],
-                        'active' => $info['active']
-                    ];
+            foreach ($lightArray as $light){
+                $vars = ["on", "brightness", "color", "color_temp"];
+                $arr = [];
+                foreach($vars as $var){
+                    if(@IPS_GetObjectIDByIdent($var, $light["InstanceID"]) > 1){
+                        $arr[$var] = GetValue(@IPS_GetObjectIDByIdent($var, $light["InstanceID"]));
+                    }
                 }
-            array_push($newLights,["InstanceID" => $lightId]);
-            IPS_SetProperty($this->InstanceID, "Lights", json_encode($newLights));
-            //$this->UpdateFormField('Lights', 'values', json_encode($newLights));
-*/
-
-            if(@IPS_GetObjectIDByIdent("on", $lightId)>0){
-                $this->RegisterMessage(IPS_GetObjectIDByIdent("on", $lightId), 10603);
+                $scene[$light["InstanceID"]] = $arr;
             }
+            $SceneValues[$SceneName] = $scene;
         }
-
     }
 ?>

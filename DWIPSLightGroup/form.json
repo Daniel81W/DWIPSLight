@@ -71,6 +71,17 @@
             "type": "Button",
             "caption": "Show Scene Values",
             "onClick": "var_dump($Scenes[\"Name\"]);"
+        },
+
+        {
+            "type": "Button",
+            "caption": "Show Scene Values",
+            "onClick": "DWIPSLightGroup_StoreScene($id, \"Test\");"
+        },
+        {
+            "type": "Button",
+            "caption": "Show Scene Values",
+            "onClick": "DWIPSLightGroup_StoreScene($id, \"Hell\");"
         }
     ],
     "actions": [],
