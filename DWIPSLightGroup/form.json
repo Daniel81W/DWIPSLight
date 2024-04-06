@@ -75,12 +75,12 @@
 
         {
             "type": "Button",
-            "caption": "Show Scene Values",
+            "caption": "Scene Test Speichern",
             "onClick": "DWIPSLightGroup_StoreScene($id, \"Test\");"
         },
         {
             "type": "Button",
-            "caption": "Show Scene Values",
+            "caption": "Scene Hell Speichern",
             "onClick": "DWIPSLightGroup_StoreScene($id, \"Hell\");"
         }
     ],
