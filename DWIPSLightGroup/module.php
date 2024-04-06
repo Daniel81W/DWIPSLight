@@ -153,7 +153,6 @@
         public function StoreScene($SceneName)
         {
             $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
-            $SceneValues = [];
             $scene = [];
             $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
 
@@ -168,6 +167,7 @@
                 $scene[$light["InstanceID"]] = $arr;
             }
             $SceneValues[$SceneName] = $scene;
+            $this->WriteAttributeString("SceneValues",json_encode($SceneValues));
         }
     }
 ?>
