@@ -12,6 +12,7 @@
 
             $this->RegisterPropertyString("Lights", "");
             $this->RegisterPropertyString("Scenes", "");
+            $this->RegisterAttributeString("scenevalues", "");
 
 		}
 
@@ -73,7 +74,7 @@
                 }
             }
 
-            //TODO Szenenarray laden
+
             $scenes = json_decode($this->ReadPropertyString("Scenes"), true);
 
             if(count($scenes) > 0){

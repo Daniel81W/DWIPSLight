@@ -68,6 +68,12 @@
             ]
         }
     ],
-    "actions": [],
+    "actions": [
+        {
+            "type": "Button",
+            "caption": "Show Scene Values",
+            "onClick": "var_dump($scenes[\"Name\"]);"
+        }
+    ],
     "status": []
 }
