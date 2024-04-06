@@ -70,15 +70,9 @@
         {
             "type": "Button",
             "caption": "Show Scene Values",
-            "onClick": "var_dump($Scenes);"
+            "onClick": "var_dump($Scenes[\"Name\"]);"
         }
     ],
-    "actions": [
-        {
-            "type": "Button",
-            "caption": "Show Scene Values",
-            "onClick": "var_dump($Scenes);"
-        }
-    ],
+    "actions": [],
     "status": []
 }
