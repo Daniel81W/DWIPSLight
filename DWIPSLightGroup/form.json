@@ -70,9 +70,8 @@
         {
             "type": "Button",
             "caption": "Show Scene Values",
-            "onClick": "var_dump($this->ReadAttributeString(\"SceneValues\"));"
+            "onClick": "var_dump(DWIPSLightGroup_SceneValues($id));"
         },
-
         {
             "type": "Button",
             "caption": "Scene Test Speichern",

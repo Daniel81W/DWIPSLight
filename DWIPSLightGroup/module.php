@@ -172,5 +172,9 @@
             $this->SendDebug("", print_r($SceneValues, true), 0);
             $this->WriteAttributeString("SceneValues",json_encode($SceneValues));
         }
+
+        public function SceneValues(){
+            return $this->ReadAttributeString("SceneValues");
+        }
     }
 ?>
