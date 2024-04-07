@@ -169,6 +169,7 @@
                 $scene[$light["InstanceID"]] = $arr;
             }
             $SceneValues[$SceneName] = $scene;
+            $this->SendDebug("", print_r($SceneValues, true), 0);
             $this->WriteAttributeString("SceneValues",json_encode($SceneValues));
         }
     }
