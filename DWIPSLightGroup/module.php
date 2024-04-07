@@ -155,6 +155,8 @@
             $emptyArr = [];
             $this->WriteAttributeString("SceneValues", json_encode($emptyArr));
             $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
+
+            $this->SendDebug("1", print_r($SceneValues, true), 0);
             $scene = [];
             $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
 
@@ -169,7 +171,7 @@
                 $scene[$light["InstanceID"]] = $arr;
             }
             $SceneValues[$SceneName] = $scene;
-            $this->SendDebug("", print_r($SceneValues, true), 0);
+            $this->SendDebug("2", print_r($SceneValues, true), 0);
             $this->WriteAttributeString("SceneValues",json_encode($SceneValues));
         }
 
