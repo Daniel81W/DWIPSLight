@@ -175,10 +175,10 @@
             $vars = ["on", "brightness", "color", "color_temp"];
             $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
             $scene = $SceneValues[$SceneName];
-            foreach ($scene as $light){
+            foreach ($scene as $lightid => $light){
                 foreach ($vars as $var){
                     if(key_exists($var, $light)){
-                        RequestAction(         $light[$var]);
+                        RequestAction(@IPS_GetObjectIDByIdent($var, $lightid),$light[$var]);
                     }
                 }
             }
