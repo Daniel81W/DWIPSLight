@@ -79,6 +79,11 @@
         },
         {
             "type": "Button",
+            "caption": "Scene Bunt Speichern",
+            "onClick": "DWIPSLightGroup_StoreScene($id, \"Bunt\");"
+        },
+        {
+            "type": "Button",
             "caption": "Scene Hell Speichern",
             "onClick": "DWIPSLightGroup_StoreScene($id, \"Hell\");"
         }

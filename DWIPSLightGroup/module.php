@@ -128,6 +128,7 @@
                     }
                     break;
                 case "scene":
+                    $this->ActivateScene($Value);
                     break;
                 default:
                     throw new Exception("Invalid Ident");
@@ -153,8 +154,6 @@
         public function StoreScene($SceneName)
         {
             $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
-
-            $this->SendDebug("1", print_r($SceneValues, true), 0);
             $scene = [];
             $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
 
@@ -169,8 +168,20 @@
                 $scene[$light["InstanceID"]] = $arr;
             }
             $SceneValues[$SceneName] = $scene;
-            $this->SendDebug("2", print_r($SceneValues, true), 0);
             $this->WriteAttributeString("SceneValues",json_encode($SceneValues));
+        }
+
+        public function ActivateScene($SceneName){
+            $vars = ["on", "brightness", "color", "color_temp"];
+            $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
+            $scene = $SceneValues[$SceneName];
+            foreach ($scene as $light){
+                foreach ($vars as $var){
+                    if(key_exists($var, $light)){
+                        RequestAction(         $light[$var]);
+                    }
+                }
+            }
         }
 
         public function SceneValues(){
