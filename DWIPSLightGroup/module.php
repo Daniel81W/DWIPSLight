@@ -180,7 +180,9 @@
                     if(key_exists($var, $light)){
                         $this->SendDebug("Test","RequestAction(@IPS_GetObjectIDByIdent(\"".$var."\", ".$lightid."), ".$light[$var].");",0);
                         //RequestAction(@IPS_GetObjectIDByIdent($var, $lightid),$light[$var]);
-                        IPS_RunScriptText("RequestAction(@IPS_GetObjectIDByIdent(\"".$var."\", ".$lightid."), ".$light[$var].");");
+                        if($var = "on") {
+                            IPS_RunScriptText("RequestAction(@IPS_GetObjectIDByIdent(\"" . $var . "\", " . $lightid . "), " . $light[$var] . ");");
+                        }
                     }
                 }
             }
