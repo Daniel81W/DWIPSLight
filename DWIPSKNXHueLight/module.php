@@ -204,7 +204,7 @@
             $knxBrightnessID = $this->ReadPropertyInteger("KNXdimvalueID");
             $knxColorID = $this->ReadPropertyInteger("KNXcolorID");
             $knxColorTemperatureID = $this->ReadPropertyInteger("KNXcolortempID");
-            $hueOnID = IPS_GetObjectIDByIdent ("on", $this->ReadPropertyInteger("HueLightID"));
+            $hueID = $this->ReadPropertyInteger("HueLightID");
 
             //Wenn sendende ID Variable mit Ident "Value" der KNX an/aus DPT und Message = 10603 (Variable aktualisiert) dann
             //    eigene Variable mit Ident "on" entsprechend setzen und wenn vorhanden Hue-Status auch entsprechend setzen
@@ -225,6 +225,10 @@
             //    eigene Variable mit Ident "color_temp" entsprechend setzen und wenn vorhanden Hue-colortemp auch entsprechend setzen
             if($SenderID == IPS_GetObjectIDByIdent("Value",$knxColorTemperatureID) && $Message == VM_UPDATE){
                 $this->SetColorTemperature($Data[0]);
+            }
+
+            if($SenderID == IPS_GetObjectIDByIdent("brightness",$hueID) && $Message == VM_UPDATE){
+                $this->SetValue("brightness", $Data[0]);
             }
 
 			
@@ -385,7 +389,7 @@
         }
 
         public function SetColorTemperature($ColorTemperature){
-            $this->SetValue("color", $ColorTemperature);
+            $this->SetValue("color_temp", $ColorTemperature);
 
             $actorState = false;
             if ($this->ReadPropertyInteger("KNXinActoreaID") > 1){
