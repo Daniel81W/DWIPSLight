@@ -178,8 +178,9 @@
             foreach ($scene as $lightid => $light){
                 foreach ($vars as $var){
                     if(key_exists($var, $light)){
-                        $this->SendDebug("Test","RequestAction(@IPS_GetObjectIDByIdent(".$var.", ".$lightid."), ".$light[$var].");",0);
-                        RequestAction(@IPS_GetObjectIDByIdent($var, $lightid),$light[$var]);
+                        $this->SendDebug("Test","RequestAction(@IPS_GetObjectIDByIdent(\"".$var."\", ".$lightid."), ".$light[$var].");",0);
+                        //RequestAction(@IPS_GetObjectIDByIdent($var, $lightid),$light[$var]);
+                        IPS_RunScript("RequestAction(@IPS_GetObjectIDByIdent(\"".$var."\", ".$lightid."), ".$light[$var].");");
                     }
                 }
             }
