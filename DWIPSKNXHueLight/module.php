@@ -230,6 +230,12 @@
             if($SenderID == IPS_GetObjectIDByIdent("brightness",$hueID) && $Message == VM_UPDATE){
                 $this->SetValue("brightness", $Data[0]);
             }
+            if($SenderID == IPS_GetObjectIDByIdent("color",$hueID) && $Message == VM_UPDATE){
+                $this->SetValue("color", $Data[0]);
+            }
+            if($SenderID == IPS_GetObjectIDByIdent("color_temperature",$hueID) && $Message == VM_UPDATE){
+                $this->SetValue("color_temp", $Data[0]);
+            }
 
 			
 		}
