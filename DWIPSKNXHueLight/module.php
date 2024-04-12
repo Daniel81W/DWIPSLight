@@ -227,6 +227,9 @@
                 $this->SetColorTemperature($Data[0]);
             }
 
+            if($SenderID == IPS_GetObjectIDByIdent("on",$hueID) && $Message == VM_UPDATE){
+                $this->SetValue("on", $Data[0] && GetValue(IPS_GetObjectIDByIdent("Value", $knxOnID)));
+            }
             if($SenderID == IPS_GetObjectIDByIdent("brightness",$hueID) && $Message == VM_UPDATE){
                 $this->SetValue("brightness", $Data[0]);
             }
@@ -234,7 +237,7 @@
                 $this->SetValue("color", $Data[0]);
             }
             if($SenderID == IPS_GetObjectIDByIdent("color_temperature",$hueID) && $Message == VM_UPDATE){
-                $this->SetValue("color_temp", $Data[0]);
+                $this->SetValue("color_temp", $this->MiredToKelvin($Data[0]));
             }
 
 			
