@@ -158,7 +158,7 @@
             $lightArray = json_decode($this->ReadPropertyString("Lights"), true);
 
             foreach ($lightArray as $light){
-                $vars = ["on", "brightness", "color", "color_temp"];
+                $vars = ["on", "brightness", "color"];
                 $arr = [];
                 foreach($vars as $var){
                     if(@IPS_GetObjectIDByIdent($var, $light["InstanceID"]) > 1){
@@ -172,7 +172,7 @@
         }
 
         public function ActivateScene($SceneName){
-            $vars = ["on", "brightness", "color", "color_temp"];
+            $vars = ["on", "brightness", "color"];
             $SceneValues = json_decode($this->ReadAttributeString("SceneValues"),true);
             $scene = $SceneValues[$SceneName];
             foreach ($scene as $lightid => $light){
