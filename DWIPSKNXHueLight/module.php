@@ -332,7 +332,7 @@
                     $starttime = microtime(true);
                     while($huestate != "connected"){
                         $huestate = @IPS_GetObjectIDByIdent("State", $this->ReadPropertyInteger("HueConnID"));
-                        if(microtime() - $starttime > 3){
+                        if(microtime(true) - $starttime > 3){
                             break 1;
                         }
                     }
