@@ -329,6 +329,7 @@
 
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
                     $huestate = "";
+                    $this->SendDebug("",@IPS_GetObjectIDByIdent("State", $this->ReadPropertyInteger("HueConnID")),0);
                     $starttime = microtime(true);
                     while($huestate != "connected"){
                         $huestate = @IPS_GetObjectIDByIdent("State", $this->ReadPropertyInteger("HueConnID"));
