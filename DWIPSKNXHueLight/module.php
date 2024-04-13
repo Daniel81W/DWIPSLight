@@ -313,7 +313,9 @@
             }
 
             if($Brightness>0) {
-                $this->SetValue("on", true);
+                if(!$this->GetValue("on")){
+                    $this->SetValue("on", true);
+                }
                 if (!$actorState) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
                     IPS_Sleep(1500);
@@ -324,11 +326,22 @@
                 if ($this->ReadPropertyInteger("KNXoutdimvalueID") > 1) {
                     KNX_WriteDPT5($this->ReadPropertyInteger("KNXoutdimvalueID"), $Brightness);
                 }
+
                 if ($this->ReadPropertyInteger("HueLightID") > 1  && IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")) > 1) {
-                    RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Brightness);
-                    IPS_Sleep(1500);
-                    if(GetValue(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID"))) != $Brightness) {
+                    $huestate = "";
+                    $starttime = microtime(true);
+                    while($huestate != "connected"){
+                        $huestate = @IPS_GetObjectIDByIdent("State", $this->ReadPropertyInteger("HueConnID"));
+                        if(microtime() - $starttime > 3){
+                            break 1;
+                        }
+                    }
+                    if($huestate == "connected") {
                         RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Brightness);
+                        IPS_Sleep(1500);
+                        if (GetValue(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID"))) != $Brightness) {
+                            RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Brightness);
+                        }
                     }
                 }
 
