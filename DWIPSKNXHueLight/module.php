@@ -10,42 +10,26 @@
 			//Never delete this line!
 			parent::Create();
 
-            /** @noinspection PhpExpressionResultUnusedInspection */
+
             $this->RegisterPropertyBoolean("knxinput", false);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyBoolean("knxoutput", false);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyBoolean("IsHue", false);
-            /** @noinspection PhpExpressionResultUnusedInspection */
 
 
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXinActoreaID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXieaID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXdimvalueID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXcolorID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXcolortempID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXsceneID", 0);
 
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutActoreaID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXouteaID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutdimvalueID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutcolorID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("KNXoutcolortempID", 0);
 
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("HueLightID", 0);
-            /** @noinspection PhpExpressionResultUnusedInspection */
             $this->RegisterPropertyInteger("HueConnID", 0);
 
 
@@ -318,7 +302,7 @@
                 }
                 if (!$actorState) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), true);
-                    IPS_Sleep(1500);
+                    //IPS_Sleep(1500);
                 }
                 if ($this->ReadPropertyInteger("KNXouteaID") > 1) {
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), true);
@@ -339,7 +323,7 @@
                     }
                     if($huestate == "connected") {
                         RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Brightness);
-                        IPS_Sleep(1500);
+                        //IPS_Sleep(1500);
                         if (GetValue(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID"))) != $Brightness) {
                             RequestAction(IPS_GetObjectIDByIdent("brightness", $this->ReadPropertyInteger("HueLightID")), $Brightness);
                         }
@@ -464,7 +448,12 @@
             return intval(round(1000000/$kelvin,0));
         }
 
-        private function dec2rgb($DecColor){
+        /**
+         * Coverts decimal color value to an array of red, green and blue
+         * @param int $DecColor Color as decimal value
+         * @return array Array of red, green and blue
+         */
+        private function dec2rgb(int $DecColor):array{
             $r = intdiv($DecColor, 256*256);
             $g = intdiv(($DecColor - $r *256*256),256);
             $b = $DecColor - $r*256*256 - $g *256;
