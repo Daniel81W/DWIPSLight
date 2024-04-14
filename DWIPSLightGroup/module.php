@@ -109,23 +109,22 @@
             switch ($Ident){
                 case "on":
                     foreach ($lightArray as $light) {
-                        $this->SendDebug("Test", "@RequestAction(@IPS_GetObjectIDByIdent(\"on\", " . $light["InstanceID"] . "), " . (int) $Value .");", 0);
                         IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"on\", " . $light["InstanceID"] . "), " . (int) $Value .");");
                     }
                     break;
                 case "brightness":
                     foreach ($lightArray as $light) {
-                        @RequestAction(@IPS_GetObjectIDByIdent("brightness", $light["InstanceID"]), $Value);
+                        IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"brightness\", " . $light["InstanceID"] . "), " . $Value . ");");
                     }
                     break;
                 case "color":
                     foreach ($lightArray as $light) {
-                        @RequestAction(@IPS_GetObjectIDByIdent("color", $light["InstanceID"]), $Value);
+                        IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"color\", " . $light["InstanceID"] . "), " . $Value .");");
                     }
                     break;
                 case "color_temp":
                     foreach ($lightArray as $light) {
-                        @RequestAction(@IPS_GetObjectIDByIdent("color_temp", $light["InstanceID"]), $Value);
+                        IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"color_temp\", " . $light["InstanceID"] . "), " . $Value . ");");
                     }
                     break;
                 case "scene":
