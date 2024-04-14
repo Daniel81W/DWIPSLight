@@ -258,7 +258,6 @@
                 if($this->ReadPropertyInteger("KNXoutActoreaID")>1){
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXoutActoreaID"), $State);
                 }
-                IPS_Sleep(800);
                 if($this->ReadPropertyInteger("KNXouteaID") > 1){
                     KNX_WriteDPT1($this->ReadPropertyInteger("KNXouteaID"), $State);
                 }

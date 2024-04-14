@@ -109,7 +109,7 @@
             switch ($Ident){
                 case "on":
                     foreach ($lightArray as $light) {
-                        @RequestAction(@IPS_GetObjectIDByIdent("on", $light["InstanceID"]), $Value);
+                        IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"on\", " . $light["InstanceID"] . "), " . $Value .");");
                     }
                     break;
                 case "brightness":
@@ -178,10 +178,7 @@
             foreach ($scene as $lightid => $light){
                 foreach ($vars as $var){
                     if(key_exists($var, $light)){
-                        $this->SendDebug("Test","RequestAction(@IPS_GetObjectIDByIdent(\"".$var."\", ".$lightid."), ".$light[$var].");",0);
-                        //RequestAction(@IPS_GetObjectIDByIdent($var, $lightid),$light[$var]);
-
-                            IPS_RunScriptText("RequestAction(@IPS_GetObjectIDByIdent(\"" . $var . "\", " . $lightid . "), " . $light[$var] . ");");
+                        IPS_RunScriptText("RequestAction(@IPS_GetObjectIDByIdent(\"" . $var . "\", " . $lightid . "), " . $light[$var] . ");");
 
                     }
                 }
