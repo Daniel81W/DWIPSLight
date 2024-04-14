@@ -60,10 +60,15 @@
                     "width": "auto",
                     "add": "",
                     "save": true,
-                    "edit": {
-                        "type": "ValidationTextBox",
-                        "caption": "Name"
-                    }
+                    "edit": [
+                        {
+                            "type": "ValidationTextBox",
+                            "caption": "Name"
+                        },{
+                            "type": "ExpansionPanel",
+                            "caption": "Name"
+                        }
+                    ]
                 }
             ]
         },
