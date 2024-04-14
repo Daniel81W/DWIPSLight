@@ -109,6 +109,7 @@
             switch ($Ident){
                 case "on":
                     foreach ($lightArray as $light) {
+                        $this->SendDebug("Test", "@RequestAction(@IPS_GetObjectIDByIdent(\"on\", " . $light["InstanceID"] . "), " . $Value .");", 0);
                         IPS_RunScriptText("@RequestAction(@IPS_GetObjectIDByIdent(\"on\", " . $light["InstanceID"] . "), " . $Value .");");
                     }
                     break;
